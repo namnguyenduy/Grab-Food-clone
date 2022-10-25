@@ -28,5 +28,8 @@ yarn add react-native-animatable
 ├── src
     |-- screens
     |-- components
+    |    |-- Header.js
     |-- global
+        |-- styles.js
+
 ```
