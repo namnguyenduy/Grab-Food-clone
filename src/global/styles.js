@@ -1,5 +1,5 @@
 const colors = {
-  primary: "#1D6D41",
+  primary: "#26C06A",
   buttons: "#F48625",
   grey1: "#433484d",
   grey2: "#5e6977",
@@ -14,4 +14,10 @@ const parameters = {
   headerHeight: "auto",
 };
 
-export { colors, parameters };
+const title = {
+  color: "#404040",
+  fontSize: 20,
+  fontWeight: "bold",
+};
+
+export { colors, parameters, title };

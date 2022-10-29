@@ -5,13 +5,13 @@ import { Icon } from "@rneui/themed";
 
 import { colors, parameters } from "../global/styles";
 
-const Header = ({ title }) => {
+const Header = ({ title, type }) => {
   return (
     <SafeAreaView style={styles.header}>
       <View style={{ marginLeft: 20 }}>
         <Icon
           type="material-community"
-          name="arrow-left"
+          name= {type}
           color={colors.headerText}
           size={28}
           onPress={() => {}}
