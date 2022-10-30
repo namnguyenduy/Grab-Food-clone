@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import { View, Text, StyleSheet, Dimensions, TextInput, Pressable } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { Icon } from "@rneui/themed";
+import { Icon, SocialIcon, Button } from "@rneui/themed";
 
-import { title, colors } from "../../global/styles";
+import { title, colors, parameters } from "../../global/styles";
 import Header from "../../components/Header";
 
 const SignInScreen = () => {
@@ -22,11 +22,6 @@ const SignInScreen = () => {
 
       <View style={{ marginLeft: 20, marginTop: 10 }}>
         <Text style={title}>Đăng nhập</Text>
-      </View>
-
-      <View style={{ alignItems: "center" }}>
-        <Text style={styles.text}>Vui lòng nhập email và mật khẩu</Text>
-        <Text style={styles.text}>Hoặc đăng ký ngay!</Text>
       </View>
 
       <View style={{ marginTop: 20 }}>
@@ -68,6 +63,64 @@ const SignInScreen = () => {
           </Pressable>
         </View>
       </View>
+
+      <View style={{ marginLeft: 30 }}>
+        <Text style={{ ...styles.text, textDecorationLine: "underline" }}>
+          Quên mật khẩu ?
+        </Text>
+      </View>
+
+      <View style={{ marginHorizontal: 20, marginTop: 25 }}>
+        <Button
+          title="Đăng nhập"
+          buttonStyle={parameters.styleButton}
+          titleStyle={parameters.buttonTitle}
+        />
+      </View>
+
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginTop: 30,
+          marginBottom: 20,
+          marginHorizontal: 30,
+        }}
+      >
+        <Text style={{ flex: 1, height: 2, backgroundColor: colors.grey1 }}></Text>
+        <Text style={{ marginHorizontal: 20, fontSize: 20 }}>hoặc</Text>
+        <Text style={{ flex: 1, height: 2, backgroundColor: colors.grey1 }}></Text>
+      </View>
+
+      <View style={{ marginHorizontal: 20 }}>
+        <View style={{ alignItems: "center" }}>
+          <SocialIcon
+            title="Tiếp tục với Facebook"
+            button
+            type="facebook"
+            style={styles.socialIcon}
+            onPress={() => {}}
+          />
+        </View>
+        <View style={{ alignItems: "center", marginTop: 10 }}>
+          <SocialIcon
+            title="Tiếp tục với Google"
+            button
+            type="google"
+            style={styles.socialIcon}
+            onPress={() => {}}
+          />
+        </View>
+
+        <View style={{ marginTop: 15 }}>
+          <Button
+            title="Tạo tài khoản"
+            buttonStyle={styles.createButton}
+            titleStyle={styles.createButtonTitle}
+          />
+        </View>
+      </View>
     </View>
   );
 };
@@ -96,5 +149,27 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignContent: "center",
     alignItems: "center",
+  },
+  socialIcon: {
+    width: "100%",
+    borderRadius: 50,
+    height: 50,
+  },
+  createButton: {
+    backgroundColor: "white",
+    // alignContent: "center",
+    // justifyContent: "center",
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: colors.primary,
+    height: 50,
+    paddingHorizontal: 20,
+  },
+  createButtonTitle: {
+    color: colors.primary,
+    fontSize: 16,
+    fontWeight: "bold",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
