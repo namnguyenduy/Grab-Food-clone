@@ -27,9 +27,42 @@ yarn add react-native-animatable
 ```
 ├── src
     |-- screens
+        |-- authScreens
+            |-- SignInScreen.js
     |-- components
     |    |-- Header.js
     |-- global
         |-- styles.js
 
+```
+
+## 4. Install `Native Wind`
+
+- [https://www.nativewind.dev/]
+
+1.
+
+```
+yarn add nativewind
+yarn add --dev tailwindcss
+```
+
+- 2. create `tailwind.config.js` by run
+
+```
+npx tailwindcss init
+```
+
+-
+
+3. In `tailwind.config.js`
+
+```
+content: ["./App.{js,jsx,ts,tsx}", "./<custom directory>/**/*.{js,jsx,ts,tsx}"]
+```
+
+4. Modify your `babel.config.js`
+
+```
+plugins: ["nativewind/babel"],
 ```

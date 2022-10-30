@@ -7,11 +7,11 @@ import { colors, parameters } from "../global/styles";
 
 const Header = ({ title, type }) => {
   return (
-    <SafeAreaView style={styles.header}>
+    <SafeAreaView style={styles.header} className="bg-red-500">
       <View style={{ marginLeft: 20 }}>
         <Icon
           type="material-community"
-          name= {type}
+          name={type}
           color={colors.headerText}
           size={28}
           onPress={() => {}}

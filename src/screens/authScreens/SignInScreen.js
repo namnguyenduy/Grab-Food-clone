@@ -20,17 +20,17 @@ const SignInScreen = () => {
     <View style={styles.container}>
       <Header title="Tài khoản" type="arrow-left" />
 
-      <View style={{ marginLeft: 20, marginTop: 10 }}>
+      <View className="ml-[5px] mt-[10px]">
         <Text style={title}>Đăng nhập</Text>
       </View>
 
-      <View style={{ marginTop: 20 }}>
+      <View className="mt-5">
         <View style={styles.textInput}>
           <View>
             <Icon type="material" name="email" iconStyle={{ color: colors.grey3 }} />
           </View>
           <TextInput
-            style={{ flex: 1, marginLeft: 10 }}
+            className="flex-1 ml-[10px]"
             placeholder="Email"
             keyboardType="email-address"
             ref={textInput1}
@@ -41,7 +41,7 @@ const SignInScreen = () => {
             <Icon type="material" name="lock" iconStyle={{ color: colors.grey3 }} />
           </View>
           <TextInput
-            style={{ flex: 1, marginLeft: 10 }}
+            className="flex-1 ml-[10px]"
             placeholder="Mật khẩu"
             secureTextEntry={visiblePassword}
             ref={textInput2}
@@ -64,13 +64,13 @@ const SignInScreen = () => {
         </View>
       </View>
 
-      <View style={{ marginLeft: 30 }}>
+      <View className="ml-[30px]">
         <Text style={{ ...styles.text, textDecorationLine: "underline" }}>
           Quên mật khẩu ?
         </Text>
       </View>
 
-      <View style={{ marginHorizontal: 20, marginTop: 25 }}>
+      <View className="mx-5 mt-[25px]">
         <Button
           title="Đăng nhập"
           buttonStyle={parameters.styleButton}
@@ -78,23 +78,14 @@ const SignInScreen = () => {
         />
       </View>
 
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginTop: 30,
-          marginBottom: 20,
-          marginHorizontal: 30,
-        }}
-      >
-        <Text style={{ flex: 1, height: 2, backgroundColor: colors.grey1 }}></Text>
-        <Text style={{ marginHorizontal: 20, fontSize: 20 }}>hoặc</Text>
-        <Text style={{ flex: 1, height: 2, backgroundColor: colors.grey1 }}></Text>
+      <View className="mt-[30px] mb-5 mx-[30px] items-center justify-between flex-row">
+        <Text className="flex-1 h-[2px]" style={{ backgroundColor: colors.grey1 }}></Text>
+        <Text className="mx-5 text-xl">hoặc</Text>
+        <Text className="flex-1 h-[2px]" style={{ backgroundColor: colors.grey1 }}></Text>
       </View>
 
-      <View style={{ marginHorizontal: 20 }}>
-        <View style={{ alignItems: "center" }}>
+      <View className="mx-5">
+        <View className="items-center">
           <SocialIcon
             title="Tiếp tục với Facebook"
             button
@@ -103,7 +94,7 @@ const SignInScreen = () => {
             onPress={() => {}}
           />
         </View>
-        <View style={{ alignItems: "center", marginTop: 10 }}>
+        <View className="items-center mt-[10px]">
           <SocialIcon
             title="Tiếp tục với Google"
             button
@@ -113,7 +104,7 @@ const SignInScreen = () => {
           />
         </View>
 
-        <View style={{ marginTop: 15 }}>
+        <View className="mt-[15px]">
           <Button
             title="Tạo tài khoản"
             buttonStyle={styles.createButton}
