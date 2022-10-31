@@ -27,10 +27,11 @@ yarn add react-native-animatable
 ```
 ├── src
     |-- screens
-        |-- authScreens
-            |-- SignInScreen.js
+    |   |-- authScreens
+|           |-- SignInScreen.js
+|           |-- SignInWelcomeScreen.js
     |-- components
-    |    |-- Header.js
+|       |-- Header.js
     |-- global
         |-- styles.js
 
@@ -65,4 +66,12 @@ content: ["./App.{js,jsx,ts,tsx}", "./<custom directory>/**/*.{js,jsx,ts,tsx}"]
 
 ```
 plugins: ["nativewind/babel"],
+```
+
+## 5: Install `React Native Swiper`
+
+- [https://github.com/leecade/react-native-swiper]
+
+```
+yarn add react-native-swiper
 ```
