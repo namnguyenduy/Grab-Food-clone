@@ -1,12 +1,12 @@
+import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-
-import { SignInScreen, SignInWelcomeScreen } from "./src/screens/authScreens";
+import RootNavigator from "./src/navigation/RootNavigator";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <SignInWelcomeScreen />
+      <RootNavigator />
       <StatusBar style="auto" />
     </View>
   );

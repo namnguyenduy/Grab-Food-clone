@@ -5,7 +5,7 @@ import { Button } from "@rneui/themed";
 
 import { title, colors, parameters } from "../../global/styles";
 
-const SignInWelcomeScreen = () => {
+const SignInWelcomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
       <View className="items-center">
@@ -29,6 +29,7 @@ const SignInWelcomeScreen = () => {
           title="Đăng nhập"
           buttonStyle={parameters.styleButton}
           titleStyle={parameters.buttonTitle}
+          onPress={() => navigation.navigate("SignInScreen")}
         />
       </View>
       <View className="justify-end mx-5 mt-[15px]">

@@ -6,7 +6,7 @@ import { Icon, SocialIcon, Button } from "@rneui/themed";
 import { title, colors, parameters } from "../../global/styles";
 import Header from "../../components/Header";
 
-const SignInScreen = () => {
+const SignInScreen = ({ navigation }) => {
   const [visiblePassword, setVisiblePassword] = useState(true);
 
   const handleVisiblePassword = () => {
@@ -18,7 +18,7 @@ const SignInScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Header title="Tài khoản" type="arrow-left" />
+      <Header title="Tài khoản" type="arrow-left" navigation={navigation} />
 
       <View className="ml-[5px] mt-[10px]">
         <Text style={title}>Đăng nhập</Text>
