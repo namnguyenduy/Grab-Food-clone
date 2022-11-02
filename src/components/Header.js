@@ -7,7 +7,7 @@ import { colors, parameters } from "../global/styles";
 
 const Header = ({ title, type, navigation }) => {
   return (
-    <SafeAreaView style={styles.header}>
+    <SafeAreaView className="py-[10px] flex-row items-center" style={styles.header}>
       <View style={{ marginLeft: 20 }}>
         <Icon
           type="material-community"
@@ -28,11 +28,8 @@ export default Header;
 
 const styles = StyleSheet.create({
   header: {
-    flexDirection: "row",
-    alignItems: "center",
     backgroundColor: colors.primary,
     height: parameters.headerHeight,
-    paddingVertical: 10,
   },
   headerText: {
     marginLeft: 30,

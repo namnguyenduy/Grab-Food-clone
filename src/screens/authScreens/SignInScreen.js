@@ -17,7 +17,7 @@ const SignInScreen = ({ navigation }) => {
   const textInput2 = useRef(1);
 
   return (
-    <View style={styles.container}>
+    <View className="flex-1">
       <Header title="Tài khoản" type="arrow-left" navigation={navigation} />
 
       <View className="ml-[5px] mt-[10px]">
@@ -75,6 +75,7 @@ const SignInScreen = ({ navigation }) => {
           title="Đăng nhập"
           buttonStyle={parameters.styleButton}
           titleStyle={parameters.buttonTitle}
+          onPress={() => navigation.navigate("HomeScreen")}
         />
       </View>
 
@@ -119,9 +120,6 @@ const SignInScreen = ({ navigation }) => {
 export default SignInScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   text: {
     color: colors.grey3,
     fontSize: 16,

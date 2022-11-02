@@ -30,12 +30,14 @@ yarn add react-native-animatable
     |   |-- authScreens
     |      |-- SignInScreen.js
     |      |-- SignInWelcomeScreen.js
+    |   |-- HomeScreen
     |-- components
     |   |-- Header.js
+    |   |-- HomeHeader.js
     |-- global
     |   |-- styles.js
     |-- navigation
-        |-- authNavigators.js
+        |-- authStack.js
         |-- RootNavigator.js
 
 ```
