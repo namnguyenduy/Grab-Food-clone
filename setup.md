@@ -34,6 +34,9 @@ yarn add react-native-animatable
     |      |-- SignInScreen.js
     |      |-- SignInWelcomeScreen.js
     |   |-- HomeScreen
+    |   |-- SearchScreen
+    |   |-- MyOrdersScreen
+    |   |-- MyAccountScreen
     |-- components
     |   |-- Header.js
     |   |-- HomeHeader.js
@@ -43,6 +46,7 @@ yarn add react-native-animatable
     |-- navigation
         |-- authStack.js
         |-- RootNavigator.js
+        |-- ClientTabs.js
 
 ```
 
