@@ -26,6 +26,9 @@ yarn add react-native-animatable
 
 ```
 ├── src
+    |-- assets
+    |   |-- data
+    |       |-- filterData.json
     |-- screens
     |   |-- authScreens
     |      |-- SignInScreen.js
@@ -34,6 +37,7 @@ yarn add react-native-animatable
     |-- components
     |   |-- Header.js
     |   |-- HomeHeader.js
+    |   |-- FoodCard.js
     |-- global
     |   |-- styles.js
     |-- navigation
@@ -125,3 +129,9 @@ import "react-native-gesture-handler";
 ```
 
 in the top in `App.js`
+
+## 7: Install `React Native CountDown Component`
+
+```
+yarn add react-native-countdown-component
+```
