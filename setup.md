@@ -37,6 +37,7 @@ yarn add react-native-animatable
     |   |-- SearchScreen
     |   |-- MyOrdersScreen
     |   |-- MyAccountScreen
+    |   |-- RestaurantsMapScreens
     |-- components
     |   |-- Header.js
     |   |-- HomeHeader.js

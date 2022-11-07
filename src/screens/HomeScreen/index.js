@@ -20,7 +20,7 @@ import restaurantsData from "../../assets/data/restaurantsData.json";
 import FoodCard from "../../components/FoodCard";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [delivery, setDelivery] = useState(true);
   const [indexCheck, setIndexCheck] = useState("0");
 
@@ -77,7 +77,13 @@ const HomeScreen = () => {
               </Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity className="flex-1" onPress={() => setDelivery(false)}>
+          <TouchableOpacity
+            className="flex-1"
+            onPress={() => {
+              setDelivery(false);
+              navigation.navigate("RestaurantsMapScreen");
+            }}
+          >
             <View
               className="items-center shadow-sm"
               style={{
@@ -229,6 +235,17 @@ const HomeScreen = () => {
           </View>
         </View>
       </ScrollView>
+
+      {delivery && (
+        <View className="absolute bottom-[10px] right-[15px] bg-white w-12 h-12 rounded-full items-center shadow-md">
+          <TouchableOpacity
+            className="justify-center flex-1"
+            onPress={() => navigation.navigate("RestaurantsMapScreen")}
+          >
+            <Icon name="place" type="material" size={32} color={colors.primary} />
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
