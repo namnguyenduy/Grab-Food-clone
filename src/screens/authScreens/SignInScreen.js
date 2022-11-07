@@ -75,7 +75,7 @@ const SignInScreen = ({ navigation }) => {
           title="Đăng nhập"
           buttonStyle={parameters.styleButton}
           titleStyle={parameters.buttonTitle}
-          onPress={() => navigation.navigate("RootClientTabs")}
+          onPress={() => navigation.navigate("DrawerNavigator")}
         />
       </View>
 

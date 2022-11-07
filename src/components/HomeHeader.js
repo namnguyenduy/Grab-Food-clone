@@ -5,7 +5,7 @@ import { Icon, withBadge } from "@rneui/themed";
 
 import { colors, parameters } from "../global/styles";
 
-const HomeHeader = () => {
+const HomeHeader = ({ navigation }) => {
   const BadgeIcon = withBadge(0)(Icon);
 
   return (
@@ -19,6 +19,7 @@ const HomeHeader = () => {
           name="menu"
           color={colors.cardBackground}
           size={32}
+          onPress={() => navigation.toggleDrawer()}
         />
       </View>
       <View>

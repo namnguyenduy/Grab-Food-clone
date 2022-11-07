@@ -48,6 +48,7 @@ yarn add react-native-animatable
         |-- authStack.js
         |-- RootNavigator.js
         |-- ClientTabs.js
+        |-- DrawerNavigator.js
 
 ```
 

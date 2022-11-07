@@ -53,7 +53,7 @@ const HomeScreen = ({ navigation }) => {
 
   return (
     <View className="flex-1">
-      <HomeHeader />
+      <HomeHeader navigation={navigation} />
       <ScrollView stickyHeaderIndices={[0]} showsVerticalScrollIndicator={false}>
         <View
           className="flex-row mt-[5px] mx-[15px] pb-[5px] shadow-sm"
