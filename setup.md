@@ -42,6 +42,7 @@ yarn add react-native-animatable
     |   |-- Header.js
     |   |-- HomeHeader.js
     |   |-- FoodCard.js
+    |   |-- DrawerContent.js
     |-- global
     |   |-- styles.js
     |-- navigation
