@@ -64,13 +64,11 @@ yarn add nativewind
 yarn add --dev tailwindcss
 ```
 
-- 2. create `tailwind.config.js` by run
+2. Create `tailwind.config.js` by run
 
 ```
 npx tailwindcss init
 ```
-
--
 
 3. In `tailwind.config.js`
 
@@ -84,12 +82,21 @@ content: ["./App.{js,jsx,ts,tsx}", "./<custom directory>/**/*.{js,jsx,ts,tsx}"]
 plugins: ["nativewind/babel"],
 ```
 
-## 5: Install `React Native Swiper`
+## 5 for ios: Install `React Native Swiper`
 
 - [https://github.com/leecade/react-native-swiper]
 
 ```
 yarn add react-native-swiper
+```
+
+## 5 for android: Install `Reactive Native Snap Carousel`
+
+- [https://github.com/meliorence/react-native-snap-carousel]
+- Fix issues when instal `Reactive Native Snap Carousel` : [https://stackoverflow.com/questions/73149910/react-native-0-69-1-i-am-facing-issue-deprecated-react-native-prop-types]
+
+```
+yarn add react-native-snap-carousel
 ```
 
 ## 6: Install `React Navigation`
