@@ -53,6 +53,7 @@ const SignInWelcomeScreen = ({ navigation }) => {
       <View className="justify-start h-1/2 mt-[15px]">
         <View className="items-center justify-center flex-1 w-full px-5">
           <Carousel
+            initialNumToRender={1}
             layout={"default"}
             ref={carouselRef}
             data={carouselItems}

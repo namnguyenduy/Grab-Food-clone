@@ -17,12 +17,36 @@ import * as Animatable from "react-native-animatable";
 import filterData from "../assets/data/filterData.json";
 
 export default function SearchComponent() {
-  const [data, setData] = useState(filterData);
+  const [listSearchData, setListSearchData] = useState(filterData);
   const [modalVisible, setModalVisible] = useState(false);
   const [textInputFocus, setTextInputFocus] = useState(true);
 
   const navigation = useNavigation();
   const textInput = useRef(0);
+
+  const contains = ({ name }, query) => (name.includes(query) ? true : false);
+
+  const handleSearch = (text) => {
+    const dataSearch = filterData.filter((item) => contains(item, text));
+    setListSearchData(dataSearch);
+  };
+  const searchListRender = ({ item }) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          Keyboard.dismiss;
+          navigation.navigate("SearchResultScreen", { item: item.name });
+          setModalVisible(false);
+          setTextInputFocus(true);
+        }}
+      >
+        <View className="flex-row p-[15px] items-center">
+          <Text className="text-sm text-grey2">{item.name}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View className="items-center">
       <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
@@ -45,7 +69,7 @@ export default function SearchComponent() {
         <View className="flex-1">
           <View className="h-[70px] justify-center px-[10px] ">
             <View className="border-2 flex-row justify-evenly items-center px-[10px] border-grey3 rounded-md mx-0 h-4/5">
-              <Animatable.View>
+              <View>
                 <Icon
                   name={textInputFocus ? "arrow-back" : "search"}
                   onPress={() => {
@@ -56,14 +80,17 @@ export default function SearchComponent() {
                   type="material"
                   iconStyle={{ marginRight: 5 }}
                 />
-              </Animatable.View>
+              </View>
               <TextInput
                 className="w-[90%]"
                 placeholder=""
                 autoFocus={false}
                 ref={textInput}
+                onFocus={() => setTextInputFocus(true)}
+                onBlur={() => setTextInputFocus(false)}
+                onChangeText={handleSearch}
               />
-              <Animatable.View>
+              <View>
                 <Icon
                   name={textInputFocus ? "cancel" : null}
                   type="material"
@@ -74,26 +101,13 @@ export default function SearchComponent() {
                     // handleSearch();
                   }}
                 />
-              </Animatable.View>
+              </View>
             </View>
           </View>
 
           <FlatList
-            data={data}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                onPress={() => {
-                  Keyboard.dismiss;
-                  navigation.navigate("SearchResultScreen", { item: item.name });
-                  setModalVisible(false);
-                  setTextInputFocus(true);
-                }}
-              >
-                <View className="flex-row p-[15px] items-center">
-                  <Text className="text-sm text-grey2">{item.name}</Text>
-                </View>
-              </TouchableOpacity>
-            )}
+            data={listSearchData}
+            renderItem={searchListRender}
             keyExtractor={(item) => item.id}
           />
         </View>
