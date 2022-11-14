@@ -4,9 +4,9 @@ import { Icon } from "@rneui/themed";
 
 import { colors } from "../global/styles";
 import HomeScreen from "../screens/HomeScreen";
-import SearchScreen from "../screens/SearchScreen";
 import MyOrdersScreen from "../screens/MyOrdersScreen";
 import MyAccountScreen from "../screens/MyAccountScreen";
+import { ClientStack } from "./clientStack";
 
 const ClientTabs = createBottomTabNavigator();
 
@@ -29,8 +29,8 @@ const RootClientTabs = () => {
         }}
       />
       <ClientTabs.Screen
-        name="SearchScreen"
-        component={SearchScreen}
+        name="ClientStack"
+        component={ClientStack}
         options={{
           headerShown: false,
           tabBarLabel: "Tìm kiếm",

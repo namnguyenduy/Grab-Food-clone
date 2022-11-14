@@ -10,6 +10,7 @@ const colors = {
   cardBackground: "#fff",
   headerText: "#fff",
   lightgreen: "#66DF48",
+  yellow: "#FFE15D",
 };
 
 const parameters = {

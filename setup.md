@@ -38,12 +38,14 @@ yarn add react-native-animatable
     |   |-- MyOrdersScreen
     |   |-- MyAccountScreen
     |   |-- RestaurantsMapScreens
+    |   |-- SearchResultScreen
     |-- components
     |   |-- Header.js
     |   |-- HomeHeader.js
     |   |-- FoodCard.js
     |   |-- DrawerContent.js
     |   |-- SearchComponent.js
+    |   |-- SearchResultCard.js
     |-- global
     |   |-- styles.js
     |-- navigation
@@ -51,6 +53,7 @@ yarn add react-native-animatable
         |-- RootNavigator.js
         |-- ClientTabs.js
         |-- DrawerNavigator.js
+        |-- ClientStack.js
 
 ```
 
