@@ -148,7 +148,7 @@ const HomeScreen = ({ navigation }) => {
               keyExtractor={(item) => item.id}
               extraData={indexCheck}
               renderItem={CategoriesRender}
-              initialNumToRender={1}
+              initialNumToRender={2}
             />
           </View>
         </View>
@@ -176,7 +176,7 @@ const HomeScreen = ({ navigation }) => {
 
             <FlatList
               className="my-[10px]"
-              initialNumToRender={1}
+              initialNumToRender={2}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               data={restaurantsData}
@@ -202,7 +202,7 @@ const HomeScreen = ({ navigation }) => {
           <View>
             <FlatList
               className="my-[10px]"
-              initialNumToRender={1}
+              initialNumToRender={2}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
               data={restaurantsData}

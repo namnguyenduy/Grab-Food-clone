@@ -42,7 +42,7 @@ const SearchScreen = ({ navigation }) => {
     return (
       <View className="my-5">
         <FlatList
-          initialNumToRender={1}
+          initialNumToRender={2}
           data={filterData}
           keyExtractor={(item) => item.id}
           renderItem={listFilterRender}
@@ -61,7 +61,7 @@ const SearchScreen = ({ navigation }) => {
       <View className="my-5">
         <FlatList
           contentContainerStyle={{ paddingBottom: 20 }}
-          initialNumToRender={1}
+          initialNumToRender={2}
           data={filterData}
           keyExtractor={(item) => item.id}
           renderItem={listFilterRender}

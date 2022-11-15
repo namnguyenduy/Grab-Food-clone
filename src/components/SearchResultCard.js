@@ -1,8 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import { Icon } from "@rneui/themed";
 
 import { colors } from "../global/styles";
+import ProductCard from "./ProductCard";
 
 const SearchResultCard = ({ restaurantsData }) => {
   const {
@@ -20,7 +28,7 @@ const SearchResultCard = ({ restaurantsData }) => {
   } = restaurantsData;
 
   return (
-    <View className="bg-white">
+    <View className="bg-white mb-5">
       <View className="mx-[10px] rounded-t-md">
         <View className="h-40">
           <ImageBackground className="h-full rounded-t-md" source={{ uri: images }} />
@@ -49,7 +57,6 @@ const SearchResultCard = ({ restaurantsData }) => {
             <View className="mx-[5px]">
               <Text style={{ color: colors.grey3 }}>&#8226;</Text>
             </View>
-
             <View className="flex-row">
               <Text
                 className="text-xs font-bold px-[10px]"
@@ -74,6 +81,18 @@ const SearchResultCard = ({ restaurantsData }) => {
             </View>
           </View>
         </View>
+      </View>
+
+      <View className="mt-[5px] pb-5 px-[10px]">
+        <FlatList
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          initialNumToRender={2}
+          style={{ backgroundColor: colors.cardBackground }}
+          data={productData}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <ProductCard productsData={item} />}
+        />
       </View>
     </View>
   );

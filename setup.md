@@ -46,6 +46,7 @@ yarn add react-native-animatable
     |   |-- DrawerContent.js
     |   |-- SearchComponent.js
     |   |-- SearchResultCard.js
+    |   |-- ProductCard.js
     |-- global
     |   |-- styles.js
     |-- navigation
