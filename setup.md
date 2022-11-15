@@ -39,6 +39,7 @@ yarn add react-native-animatable
     |   |-- MyAccountScreen
     |   |-- RestaurantsMapScreens
     |   |-- SearchResultScreen
+    |   |-- RestaurantHomeScreen
     |-- components
     |   |-- Header.js
     |   |-- HomeHeader.js
@@ -47,6 +48,7 @@ yarn add react-native-animatable
     |   |-- SearchComponent.js
     |   |-- SearchResultCard.js
     |   |-- ProductCard.js
+    |   |-- RestaurantHeader.js
     |-- global
     |   |-- styles.js
     |-- navigation
