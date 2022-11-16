@@ -15,6 +15,8 @@ module.exports = {
         cardBackground: "#fff",
         headerText: "#fff",
         lightgreen: "#66DF48",
+        yellow: "#FFE15D",
+        red: "#E14D2A",
       },
     },
   },

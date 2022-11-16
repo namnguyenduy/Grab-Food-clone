@@ -56,7 +56,7 @@ const RestaurantHeader = ({ navigation, id }) => {
               name={liked && index2 == counter ? "favorite" : "favorite-border"}
               type="material"
               size={30}
-              color="#E14D2A"
+              color={colors.red}
               onPress={likeHandler}
             />
           </View>
@@ -64,7 +64,7 @@ const RestaurantHeader = ({ navigation, id }) => {
         <View className="items-center justify-center">
           {visible && index2 == counter && (
             <Animated.View style={{ transform: [{ scale: currentValue }] }}>
-              <Icon name="favorite" type="material" size={40} color="#E14D2A" />
+              <Icon name="favorite" type="material" size={40} color={colors.red} />
             </Animated.View>
           )}
         </View>

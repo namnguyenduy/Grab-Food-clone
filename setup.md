@@ -155,4 +155,13 @@ in the top in `App.js`
 
 ```
 yarn add react-native-countdown-component
+expo install react-native-pager-view
+```
+
+## 8: Install `React Native Tab View`
+
+-- [https://www.npmjs.com/package/react-native-tab-view]
+
+```
+yarn add react-native-tab-view
 ```
