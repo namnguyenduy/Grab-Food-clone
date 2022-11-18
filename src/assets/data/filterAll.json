@@ -1,0 +1,57 @@
+[
+  {
+    "id": "0",
+    "name": "Trà Sữa",
+    "image": "https://cdn-icons-png.flaticon.com/512/3081/3081162.png"
+  },
+  {
+    "id": "1",
+    "name": "Cơm",
+    "image": "https://cdn-icons-png.flaticon.com/512/1531/1531385.png"
+  },
+  {
+    "id": "2",
+    "name": "Ăn Vặt",
+    "image": "https://cdn-icons-png.flaticon.com/512/2515/2515241.png"
+  },
+  {
+    "id": "3",
+    "name": "Hải Sản",
+    "image": "https://cdn-icons-png.flaticon.com/512/3058/3058950.png"
+  },
+  {
+    "id": "4",
+    "name": "Gà Rán",
+    "image": "https://cdn-icons-png.flaticon.com/512/2884/2884642.png"
+  },
+  {
+    "id": "5",
+    "name": "Lẩu",
+    "image": "https://cdn-icons-png.flaticon.com/512/3183/3183463.png"
+  },
+  {
+    "id": "6",
+    "name": "Bánh Mì",
+    "image": "https://cdn-icons-png.flaticon.com/512/2102/2102354.png"
+  },
+  {
+    "id": "7",
+    "name": "Đồ Uống",
+    "image": "https://cdn-icons-png.flaticon.com/512/2738/2738730.png"
+  },
+  {
+    "id": "8",
+    "name": "Trái cây",
+    "image": "https://cdn-icons-png.flaticon.com/512/3194/3194591.png"
+  },
+  {
+    "id": "9",
+    "name": "Phở",
+    "image": "https://cdn-icons-png.flaticon.com/512/1623/1623786.png"
+  },
+  {
+    "id": "10",
+    "name": "Tráng miệng",
+    "image": "https://cdn-icons-png.flaticon.com/512/3081/3081949.png"
+  }
+]

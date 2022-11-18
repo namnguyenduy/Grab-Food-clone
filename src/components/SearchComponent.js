@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Icon } from "@rneui/themed";
 import { colors } from "../global/styles";
 import * as Animatable from "react-native-animatable";
+
 import filterData from "../assets/data/filterData.json";
 
 export default function SearchComponent() {

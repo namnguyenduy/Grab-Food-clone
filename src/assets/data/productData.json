@@ -1,0 +1,45 @@
+[
+  {
+    "id": "0",
+    "name": "Hand cut chips",
+    "price": 29.3,
+    "image": "https://bukasapics.s3.us-east-2.amazonaws.com/plate5.png",
+    "details": "Two 100% fresh beef burger patties that are hot,deliciously"
+  },
+  {
+    "id": "1",
+    "name": "Big Mac",
+    "price": 50.8,
+    "image": "https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png",
+    "details": "McFeast features two 100% fresh beef burger patties that are hot"
+  },
+  {
+    "id": "2",
+    "name": "Chicken Burger",
+    "price": 70,
+    "image": "https://bukasapics.s3.us-east-2.amazonaws.com/plate3.png",
+    "details": ""
+  },
+
+  {
+    "id": "3",
+    "name": "Hand cut chips",
+    "price": 29.3,
+    "image": "https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png",
+    "details": "Two 100% fresh beef burger patties that are hot,deliciously"
+  },
+  {
+    "id": "4",
+    "name": "Big Mac",
+    "price": 70.2,
+    "image": "https://bukasapics.s3.us-east-2.amazonaws.com/plate1.png",
+    "details": "McFeast features two 100% fresh beef burger patties that are hot"
+  },
+  {
+    "id": "5",
+    "name": "Chicken Burger",
+    "price": 70,
+    "image": "https://bukasapics.s3.us-east-2.amazonaws.com/chicken.png",
+    "details": ""
+  }
+]

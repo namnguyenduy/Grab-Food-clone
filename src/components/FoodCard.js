@@ -32,7 +32,11 @@ const FoodCard = ({ onPressFoodCard, restaurantData, screenWidth }) => {
 
         <View className="ml-[10px]">
           <View>
-            <Text className="text-xl font-bold mt-[5px]" style={{ color: colors.grey1 }}>
+            <Text
+              className="text-xl font-bold mt-[5px]"
+              style={{ color: colors.grey1 }}
+              numberOfLines={1}
+            >
               {restaurantName}
             </Text>
           </View>

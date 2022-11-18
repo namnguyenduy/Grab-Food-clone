@@ -17,7 +17,7 @@ import HomeHeader from "../../components/HomeHeader";
 import { colors, parameters } from "../../global/styles";
 import filterData from "../../assets/data/filterData.json";
 import restaurantsData from "../../assets/data/restaurantsData.json";
-import FoodCard from "../../components/FoodCard";
+import { FoodCard } from "../../components";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const HomeScreen = ({ navigation }) => {

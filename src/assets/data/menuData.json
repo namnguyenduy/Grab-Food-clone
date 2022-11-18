@@ -1,0 +1,13 @@
+[
+  { "title": "Cơm niêu", "special": false, "key": 0 },
+  { "title": "Gà", "special": false, "key": 1 },
+  { "title": "Burger", "special": false, "key": 2 },
+  { "title": "Mỳ", "special": false, "key": 3 },
+  { "title": "Nước có ga", "special": false, "key": 4 },
+  { "title": "Trà", "special": false, "key": 5 },
+  { "title": "Lợn bản", "special": false, "key": 6 },
+  { "title": "Món lẩu", "special": false, "key": 7 },
+  { "title": "Rau theo mùa", "special": false, "key": 8 },
+  { "title": "Bánh tráng", "special": false, "key": 9 },
+  { "title": "Phở", "special": false, "key": 10 }
+]

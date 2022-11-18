@@ -1,12 +1,21 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ScrollView, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Dimensions,
+  TouchableOpacity,
+  Modal,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Icon } from "@rneui/themed";
 import { TabView, TabBar } from "react-native-tab-view";
 
-import RestaurantHeader from "../../components/RestaurantHeader";
-import restaurantData from "../../assets/data/restaurantsData.json";
 import { colors } from "../../global/styles";
+import { RestaurantHeader } from "../../components";
+import restaurantData from "../../assets/data/restaurantsData.json";
+import { MenuScreen } from "../RestaurantTabs";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const initialLayout = { width: SCREEN_WIDTH };
@@ -35,11 +44,16 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
     />
   );
 
-  const renderScene = () => <View></View>;
+  const updateRoute = () => <View></View>;
+
+  const menuPressed = () => {
+    navigation.navigate("MenuProductScreen");
+  };
+
   return (
     <SafeAreaView className="flex-1">
       <ScrollView>
-        <View>
+        <View className="mb-5">
           <RestaurantHeader id={id} navigation={navigation} />
           {restaurantData[id].discount && (
             <View className="p-[3px] items-center justify-center">
@@ -48,9 +62,13 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
               </Text>
             </View>
           )}
-          <View className="flex-row flex-1 mt-[5px] mx-[10px] justify-between items-center">
-            <View>
-              <Text className="text-xl font-bold" style={{ color: colors.grey1 }}>
+          <View className="flex-row flex-1 mt-[5px] mx-[10px] justify-between">
+            <View className="w-[200px]">
+              <Text
+                className="w-full text-xl font-bold"
+                numberOfLines={2}
+                style={{ color: colors.grey1 }}
+              >
                 {restaurantData[id].restaurantName}
               </Text>
               <Text className="text-sm" style={{ color: colors.grey3 }}>
@@ -88,14 +106,42 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
         <View className="shadow-md" style={{ backgroundColor: colors.cardBackground }}>
           <TabView
             navigationState={{ index, routes }}
-            renderScene={renderScene}
+            renderScene={updateRoute}
             onIndexChange={setIndex}
             initialLayout={initialLayout}
             renderTabBar={renderTabBar}
             tabBarPosition="top"
           />
         </View>
+        {index === 0 && <MenuScreen onPress={menuPressed} />}
       </ScrollView>
+
+      <TouchableOpacity>
+        <View
+          className="h-[50px] justify-center px-[5px]"
+          style={{ backgroundColor: colors.primary }}
+        >
+          <View className="flex-row items-center justify-between">
+            <Text
+              className="pl-[3px] text-lg font-bold"
+              style={{ color: colors.cardBackground }}
+            >
+              Giỏ hàng
+            </Text>
+            <View
+              className="w-auto h-auto p-[5px] mr-[10px] rounded-full items-center justify-center "
+              style={{ borderColor: colors.cardBackground, borderWidth: 1 }}
+            >
+              <Text
+                className="text-lg font-bold"
+                style={{ color: colors.cardBackground }}
+              >
+                0
+              </Text>
+            </View>
+          </View>
+        </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };

@@ -10,8 +10,9 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import React from "react";
 
-import SearchComponent from "../../components/SearchComponent";
+import { SearchComponent } from "../../components";
 import filterData from "../../assets/data/filterData.json";
+import filterAll from "../../assets/data/filterAll.json";
 import { colors } from "../../global/styles";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -30,7 +31,16 @@ const SearchScreen = ({ navigation }) => {
               className="items-center justify-center w-full h-full"
               style={{ backgroundColor: "rgba(52, 52, 52,0.3)" }}
             >
-              <Text className="text-lg text-cardBackground">{item.name}</Text>
+              <Text
+                className="text-lg text-cardBackground"
+                style={{
+                  textShadowColor: "black",
+                  textShadowOffset: { width: 5, height: 0 },
+                  textShadowRadius: 30,
+                }}
+              >
+                {item.name}
+              </Text>
             </View>
           </ImageBackground>
         </View>
@@ -43,7 +53,7 @@ const SearchScreen = ({ navigation }) => {
       <View className="my-5">
         <FlatList
           initialNumToRender={2}
-          data={filterData}
+          data={filterAll}
           keyExtractor={(item) => item.id}
           renderItem={listFilterRender}
           horizontal={false}

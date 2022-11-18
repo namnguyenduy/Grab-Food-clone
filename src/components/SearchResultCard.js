@@ -29,7 +29,7 @@ const SearchResultCard = ({ restaurantsData, onPressRestaurantCard }) => {
 
   return (
     <View>
-      <View className="bg-white mb-5">
+      <View className="mb-5 bg-white">
         <TouchableOpacity onPress={onPressRestaurantCard}>
           <View className="mx-[10px] rounded-t-md">
             <View className="h-40">

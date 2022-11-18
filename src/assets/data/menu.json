@@ -1,0 +1,10 @@
+[
+  { "title": "Cơm niêu", "key": 1 },
+  { "title": "Gà", "key": 2 },
+  { "title": "Burger", "key": 3 },
+  { "title": "Mỳ", "special": false, "key": 4 },
+  { "title": "Nước có ga", "key": 5 },
+  { "title": "Trà", "key": 6 },
+  { "title": "Xôi", "key": 7 },
+  { "title": "Món lẩu", "special": false, "key": 8 }
+]

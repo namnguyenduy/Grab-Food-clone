@@ -28,7 +28,6 @@ yarn add react-native-animatable
 ├── src
     |-- assets
     |   |-- data
-    |       |-- filterData.json
     |-- screens
     |   |-- authScreens
     |      |-- SignInScreen.js
@@ -40,6 +39,9 @@ yarn add react-native-animatable
     |   |-- RestaurantsMapScreens
     |   |-- SearchResultScreen
     |   |-- RestaurantHomeScreen
+    |   |-- RestaurantTabs
+    |       |-- MenuScreen.js
+    |   |-- MenuTabs
     |-- components
     |   |-- Header.js
     |   |-- HomeHeader.js
@@ -49,6 +51,7 @@ yarn add react-native-animatable
     |   |-- SearchResultCard.js
     |   |-- ProductCard.js
     |   |-- RestaurantHeader.js
+    |   |-- MenuCard.js
     |-- global
     |   |-- styles.js
     |-- navigation
@@ -160,8 +163,16 @@ expo install react-native-pager-view
 
 ## 8: Install `React Native Tab View`
 
--- [https://www.npmjs.com/package/react-native-tab-view]
+- [https://www.npmjs.com/package/react-native-tab-view]
 
 ```
 yarn add react-native-tab-view
+```
+
+## 9: Install `React Native Format Currency`
+
+- [https://www.npmjs.com/package/react-native-format-currency]
+
+```
+yarn add react-native-format-currency
 ```

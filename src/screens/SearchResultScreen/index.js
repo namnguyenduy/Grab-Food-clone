@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Dimensions, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import SearchResultCard from "../../components/SearchResultCard";
+import { SearchResultCard } from "../../components";
 import restaurantData from "../../assets/data/restaurantsData.json";
 import { colors } from "../../global/styles";
 
