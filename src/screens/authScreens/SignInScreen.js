@@ -14,7 +14,7 @@ import { Formik } from "formik";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 import { auth } from "../../../firebase";
-import { title, colors, parameters } from "../../global/styles";
+import { colors, parameters } from "../../global/styles";
 import Header from "../../components/Header";
 
 const SignInScreen = ({ navigation }) => {
@@ -24,10 +24,18 @@ const SignInScreen = ({ navigation }) => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       if (user) {
-        console.log("User created successfully");
+        console.log("User sign in successfully");
       }
     } catch (error) {
-      Alert.alert(error.name, error.message);
+      if (error.code === "auth/wrong-password") {
+        Alert.alert("Sai mật khẩu");
+      } else if (error.code === "auth/user-not-found") {
+        Alert.alert("Tài khoản không tồn tại");
+      } else if (error.code === "auth/invalid-email") {
+        Alert.alert("Email không hợp lệ");
+      } else {
+        Alert.alert(error.code, error.message);
+      }
     }
   };
   const handleVisiblePassword = () => {
@@ -39,11 +47,7 @@ const SignInScreen = ({ navigation }) => {
 
   return (
     <View className="flex-1">
-      <Header title="Tài khoản" type="arrow-left" navigation={navigation} />
-
-      <View className="ml-[5px] mt-[10px]">
-        <Text style={title}>Đăng nhập</Text>
-      </View>
+      <Header title="Đăng nhập" type="arrow-left" navigation={navigation} />
 
       <Formik
         initialValues={{
@@ -153,6 +157,7 @@ const SignInScreen = ({ navigation }) => {
             title="Tạo tài khoản"
             buttonStyle={styles.createButton}
             titleStyle={styles.createButtonTitle}
+            onPress={() => navigation.navigate("SignUpScreen")}
           />
         </View>
       </View>

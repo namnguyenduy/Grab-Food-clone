@@ -32,6 +32,7 @@ yarn add react-native-animatable
     |   |-- authScreens
     |      |-- SignInScreen.js
     |      |-- SignInWelcomeScreen.js
+    |      |-- SignUpScreen.js
     |   |-- HomeScreen
     |   |-- SearchScreen
     |   |-- MyOrdersScreen

@@ -79,6 +79,7 @@ const SignInWelcomeScreen = ({ navigation }) => {
           title="Hoặc đăng ký ngay"
           buttonStyle={styles.createButton}
           titleStyle={styles.createButtonTitle}
+          onPress={() => navigation.navigate("SignUpScreen")}
         />
       </View>
     </SafeAreaView>
