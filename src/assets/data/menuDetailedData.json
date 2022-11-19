@@ -3,7 +3,7 @@
     "id": "0",
     "meal": "Big Mac",
     "price": 70.2,
-    "image": "https://bukasapics.s3.us-east-2.amazonaws.com/plate1.png",
+    "image": "https://cdn.bosh.tv/uploads/images/recipes/_full/veganbigmacstill.jpg?v=1601992691",
     "details": "McFeast features two 100% fresh beef burger patties that are hot",
     "preferenceTitle": [
       "Choose your 2 dips",
@@ -69,7 +69,7 @@
     "id": "1",
     "meal": "Hand cut chips",
     "price": 29.3,
-    "image": "https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png",
+    "image": "https://eyejam.agency/wp-content/uploads/2021/11/chips.jpg",
     "details": "Two 100% fresh beef burger patties that are hot,deliciously",
     "preferenceTitle": [
       "Choose your 2 dips",
@@ -135,7 +135,7 @@
     "id": "2",
     "meal": "Chicken Burger",
     "price": 45.7,
-    "image": "https://bukasapics.s3.us-east-2.amazonaws.com/plate3.png",
+    "image": "https://simply-delicious-food.com/wp-content/uploads/2022/06/Grilled-chicken-burgers2.jpg",
     "details": "",
     "preferenceTitle": [
       "Choose your 2 dips",
@@ -202,7 +202,7 @@
     "id": "3",
     "meal": "Big Mac",
     "price": 50.8,
-    "image": "https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png",
+    "image": "https://cdn.bosh.tv/uploads/images/recipes/_full/veganbigmacstill.jpg?v=1601992691",
     "details": "McFeast features two 100% fresh beef burger patties that are hot",
     "preferenceTitle": [
       "Choose your 2 dips",
@@ -269,7 +269,7 @@
     "id": "4",
     "meal": "Hand cut chips",
     "price": 29.3,
-    "image": "https://bukasapics.s3.us-east-2.amazonaws.com/plate5.png",
+    "image": "https://eyejam.agency/wp-content/uploads/2021/11/chips.jpg",
     "details": "Two 100% fresh beef burger patties that are hot,deliciously",
 
     "preferenceTitle": [
@@ -337,7 +337,7 @@
     "id": "5",
     "meal": "Big Mac",
     "price": 70.2,
-    "image": "https://bukasapics.s3.us-east-2.amazonaws.com/plate1.png",
+    "image": "https://cdn.bosh.tv/uploads/images/recipes/_full/veganbigmacstill.jpg?v=1601992691",
     "details": "McFeast features two 100% fresh beef burger patties that are hot",
     "preferenceTitle": [
       "Choose your 2 dips",

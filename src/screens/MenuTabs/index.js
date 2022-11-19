@@ -8,7 +8,7 @@ import menuDetailedData from "../../assets/data/menuDetailedData.json";
 const Route1 = () => {
   return (
     <View className="flex-1">
-      <View className="mt[5px] pb-5">
+      <View className="mt-[5px] pb-5">
         <FlatList
           className="bg-white"
           data={menuDetailedData}

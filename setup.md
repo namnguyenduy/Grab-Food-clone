@@ -176,3 +176,71 @@ yarn add react-native-tab-view
 ```
 yarn add react-native-format-currency
 ```
+
+## 10: Setup `Firebase`
+
+### 10.1: Install `Firebase`. If you use `react native cli` install `React Native Firebase`
+
+- [https://docs.expo.dev/guides/using-firebase/]
+
+```
+yarn add firebase
+npx expo install firebase
+```
+
+- Configure metro
+
+```
+npx expo customize metro.config.js
+```
+
+- In `metro.config.js`
+
+```
+const { getDefaultConfig } = require('@expo/metro-config');
+
+const defaultConfig = getDefaultConfig(__dirname);
+defaultConfig.resolver.assetExts.push('cjs');
+
+module.exports = defaultConfig;
+
+```
+
+### 10.2 In `Fire base`
+
+#### 10.2.1
+
+- [https://firebase.google.com/]
+- B1: Go to console -> add project -> name project `grabfoodclone` -> `create project button`
+- B2: Click on `web` icon if you use `expo cli`. If you use `react native cli`, you can click `android` icon
+- B2.1: type an `app nickname` -> press `register app button
+- B2.2: copy `firebaseConfig` and paste to `firebase.js` -> change some code in `firebase.js`
+
+#### 10.2.2
+
+- In tab `Authentication` -> get started -> `Email/Password` -> enable (don't need enable Email link) -> save
+- In `project overview` -> click `project settings`
+- - set `support email`
+- - set `default gcp` (asia southeast: VN)
+
+#### 10.2.3 Fix warning `AsyncStorage has been extracted from react-native core and will be removed in a future release`
+
+- [https://amanhimself.dev/blog/remove-asyncstorage-has-been-extracted-warning-using-firebase/]
+
+```
+expo install @react-native-async-storage/async-storage
+```
+
+- Then change some code in firebase.js
+
+#### 10.2.4
+
+- In tab `Authentication` -> click `add user`
+
+## 11: Install `formik`
+
+- [https://formik.org/docs/overview]
+
+```
+yarn add formik
+```

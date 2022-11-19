@@ -1,20 +1,41 @@
 import React, { useState, useRef } from "react";
-import { View, Text, StyleSheet, Dimensions, TextInput, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  TextInput,
+  Pressable,
+  Alert,
+} from "react-native";
 import * as Animatable from "react-native-animatable";
 import { Icon, SocialIcon, Button } from "@rneui/themed";
+import { Formik } from "formik";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
+import { auth } from "../../../firebase";
 import { title, colors, parameters } from "../../global/styles";
 import Header from "../../components/Header";
 
 const SignInScreen = ({ navigation }) => {
   const [visiblePassword, setVisiblePassword] = useState(true);
 
+  const signIn = async ({ email, password }) => {
+    try {
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      if (user) {
+        console.log("User created successfully");
+      }
+    } catch (error) {
+      Alert.alert(error.name, error.message);
+    }
+  };
   const handleVisiblePassword = () => {
     setVisiblePassword(!visiblePassword);
   };
 
   const textInput1 = useRef(1);
-  const textInput2 = useRef(1);
+  const textInput2 = useRef(2);
 
   return (
     <View className="flex-1">
@@ -24,60 +45,82 @@ const SignInScreen = ({ navigation }) => {
         <Text style={title}>Đăng nhập</Text>
       </View>
 
-      <View className="mt-5">
-        <View style={styles.textInput}>
+      <Formik
+        initialValues={{
+          email: "",
+          password: "",
+        }}
+        onSubmit={(values) => {
+          signIn(values);
+        }}
+      >
+        {(props) => (
           <View>
-            <Icon type="material" name="email" iconStyle={{ color: colors.grey3 }} />
-          </View>
-          <TextInput
-            className="flex-1 ml-[10px]"
-            placeholder="Email"
-            keyboardType="email-address"
-            ref={textInput1}
-          />
-        </View>
-        <View style={styles.textInput}>
-          <View>
-            <Icon type="material" name="lock" iconStyle={{ color: colors.grey3 }} />
-          </View>
-          <TextInput
-            className="flex-1 ml-[10px]"
-            placeholder="Mật khẩu"
-            secureTextEntry={visiblePassword}
-            ref={textInput2}
-          />
-          <Pressable onPress={handleVisiblePassword}>
-            {visiblePassword ? (
-              <Icon
-                type="material"
-                name="visibility-off"
-                iconStyle={{ color: colors.grey3 }}
-              />
-            ) : (
-              <Icon
-                type="material"
-                name="visibility"
-                iconStyle={{ color: colors.grey3 }}
-              />
-            )}
-          </Pressable>
-        </View>
-      </View>
+            <View className="mt-5">
+              <View style={styles.textInput}>
+                <View>
+                  <Icon
+                    type="material"
+                    name="email"
+                    iconStyle={{ color: colors.grey3 }}
+                  />
+                </View>
+                <TextInput
+                  className="flex-1 ml-[10px]"
+                  placeholder="Email"
+                  keyboardType="email-address"
+                  ref={textInput1}
+                  onChangeText={props.handleChange("email")}
+                  value={props.values.email}
+                />
+              </View>
+              <View style={styles.textInput}>
+                <View>
+                  <Icon type="material" name="lock" iconStyle={{ color: colors.grey3 }} />
+                </View>
+                <TextInput
+                  className="flex-1 ml-[10px]"
+                  placeholder="Mật khẩu"
+                  secureTextEntry={visiblePassword}
+                  ref={textInput2}
+                  onChangeText={props.handleChange("password")}
+                  value={props.values.password}
+                />
+                <Pressable onPress={handleVisiblePassword}>
+                  {visiblePassword ? (
+                    <Icon
+                      type="material"
+                      name="visibility-off"
+                      iconStyle={{ color: colors.grey3 }}
+                    />
+                  ) : (
+                    <Icon
+                      type="material"
+                      name="visibility"
+                      iconStyle={{ color: colors.grey3 }}
+                    />
+                  )}
+                </Pressable>
+              </View>
+            </View>
 
-      <View className="ml-[30px]">
-        <Text style={{ ...styles.text, textDecorationLine: "underline" }}>
-          Quên mật khẩu ?
-        </Text>
-      </View>
+            <View className="ml-[30px]">
+              <Text style={{ ...styles.text, textDecorationLine: "underline" }}>
+                Quên mật khẩu ?
+              </Text>
+            </View>
 
-      <View className="mx-5 mt-[25px]">
-        <Button
-          title="Đăng nhập"
-          buttonStyle={parameters.styleButton}
-          titleStyle={parameters.buttonTitle}
-          onPress={() => navigation.navigate("DrawerNavigator")}
-        />
-      </View>
+            <View className="mx-5 mt-[25px]">
+              <Button
+                title="Đăng nhập"
+                buttonStyle={parameters.styleButton}
+                titleStyle={parameters.buttonTitle}
+                onPress={props.handleSubmit}
+              />
+            </View>
+          </View>
+        )}
+      </Formik>
 
       <View className="mt-[30px] mb-5 mx-[30px] items-center justify-between flex-row">
         <Text className="flex-1 h-[2px]" style={{ backgroundColor: colors.grey1 }}></Text>
