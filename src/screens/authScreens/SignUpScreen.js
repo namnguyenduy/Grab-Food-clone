@@ -80,7 +80,7 @@ const SignUpScreen = ({ navigation }) => {
                   </View>
                   <TextInput
                     className="flex-1 ml-[10px]"
-                    placeholder="tên"
+                    placeholder="tên hiển thị"
                     onChangeText={props.handleChange("name")}
                     value={props.values.name}
                   />

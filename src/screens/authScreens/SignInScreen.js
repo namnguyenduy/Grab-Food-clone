@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import {
   View,
   Text,
@@ -16,15 +16,18 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase";
 import { colors, parameters } from "../../global/styles";
 import Header from "../../components/Header";
+import { SignInContext } from "../../contexts/authContext";
 
 const SignInScreen = ({ navigation }) => {
   const [visiblePassword, setVisiblePassword] = useState(true);
+
+  const { dispatchSignedIn } = useContext(SignInContext);
 
   const signIn = async ({ email, password }) => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       if (user) {
-        console.log("User sign in successfully");
+        dispatchSignedIn({ type: "SIGN_IN", payload: { userToken: "signed-in" } });
       }
     } catch (error) {
       if (error.code === "auth/wrong-password") {

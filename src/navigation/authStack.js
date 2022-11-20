@@ -2,14 +2,12 @@ import React from "react";
 import { createStackNavigator, TransitionPresets } from "@react-navigation/stack";
 
 import { SignInScreen, SignInWelcomeScreen, SignUpScreen } from "../screens/authScreens";
-import RestaurantsMapScreen from "../screens/RestaurantsMapScreen";
-import DrawerNavigator from "./DrawerNavigator";
 
 const Auth = createStackNavigator();
 
 const AuthStack = () => {
   return (
-    <Auth.Navigator initialRouteName="SignInWelcomeScreen">
+    <Auth.Navigator>
       <Auth.Screen
         name="SignInWelcomeScreen"
         component={SignInWelcomeScreen}
@@ -29,22 +27,6 @@ const AuthStack = () => {
       <Auth.Screen
         name="SignUpScreen"
         component={SignUpScreen}
-        options={{
-          headerShown: false,
-          ...TransitionPresets.RevealFromBottomAndroid,
-        }}
-      />
-      <Auth.Screen
-        name="DrawerNavigator"
-        component={DrawerNavigator}
-        options={{
-          headerShown: false,
-          ...TransitionPresets.RevealFromBottomAndroid,
-        }}
-      />
-      <Auth.Screen
-        name="RestaurantsMapScreen"
-        component={RestaurantsMapScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.RevealFromBottomAndroid,

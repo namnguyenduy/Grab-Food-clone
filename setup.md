@@ -56,11 +56,17 @@ yarn add react-native-animatable
     |-- global
     |   |-- styles.js
     |-- navigation
-        |-- authStack.js
-        |-- RootNavigator.js
-        |-- ClientTabs.js
-        |-- DrawerNavigator.js
-        |-- ClientStack.js
+    |   |-- appStack.js
+    |   |-- authStack.js
+    |   |-- RootNavigator.js
+    |   |-- ClientTabs.js
+    |   |-- DrawerNavigator.js
+    |   |-- ClientStack.js
+    |-- contexts
+    |   |-- AuthContext.js
+    |-- reducers
+        |-- authReducers.js
+
 
 ```
 
