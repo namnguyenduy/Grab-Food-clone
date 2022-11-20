@@ -4,6 +4,10 @@ const SignInReducer = (state, action) => {
       return {
         userToken: action.payload.userToken,
       };
+    case "SIGN_OUT":
+      return {
+        userToken: null,
+      };
     default:
       return state;
   }

@@ -1,15 +1,29 @@
-import React, { useState, useContext, useEffect } from "react";
-import { View, Text, Linking, Pressable, Alert, Switch, StyleSheet } from "react-native";
+import React, { useContext } from "react";
+import { View, Text, Alert, Switch, StyleSheet } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItem,
   DrawerItemList,
 } from "@react-navigation/drawer";
 import { Avatar, Button, Icon } from "@rneui/themed";
+import { signOut } from "firebase/auth";
 
 import { colors } from "../global/styles";
+import { auth } from "../../firebase";
+import { SignInContext } from "../contexts/authContext";
 
 const DrawerContent = (props) => {
+  const { dispatchSignedIn } = useContext(SignInContext);
+  const logout = async () => {
+    try {
+      await signOut(auth).then(() => {
+        dispatchSignedIn({ type: "SIGN_OUT" });
+      });
+    } catch (error) {
+      Alert.alert(error.code, error.message);
+    }
+  };
+
   return (
     <View className="flex-1 ">
       <DrawerContentScrollView {...props}>
@@ -138,6 +152,7 @@ const DrawerContent = (props) => {
             size={size}
           />
         )}
+        onPress={logout}
       />
     </View>
   );
