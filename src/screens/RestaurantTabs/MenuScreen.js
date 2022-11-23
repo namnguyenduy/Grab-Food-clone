@@ -8,7 +8,7 @@ import { colors } from "../../global/styles";
 
 const MenuScreen = ({ navigation, restaurant, onPress }) => {
   return (
-    <View className="flex-1 mt-5">
+    <View className="flex-1 pt-5" style={{ backgroundColor: colors.cardBackground }}>
       <View className="mx-[10px]">
         <Text className="text-xl font-bold">Đặc biệt</Text>
         {specialData.map((item) => (

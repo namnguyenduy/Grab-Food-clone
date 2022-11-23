@@ -5,7 +5,7 @@ import { MenuCard } from "../../components";
 import menuData from "../../assets/data/menuData.json";
 import menuDetailedData from "../../assets/data/menuDetailedData.json";
 
-const Route1 = () => {
+const Route1 = ({ navigation }) => {
   return (
     <View className="flex-1">
       <View className="mt-[5px] pb-5">
@@ -14,7 +14,9 @@ const Route1 = () => {
           data={menuDetailedData}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("PreferenceScreen", { id: item.id })}
+            >
               <MenuCard menu={item} />
             </TouchableOpacity>
           )}

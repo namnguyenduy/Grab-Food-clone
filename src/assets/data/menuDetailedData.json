@@ -60,7 +60,7 @@
         { "name": "Small Vanilla Shake", "price": 17.95, "checked": false, "id": 41 }
       ]
     ],
-    "minimum_quatity": [2, 1, 1, null, null],
+    "minimum_quantity": [2, 1, 1, null, null],
     "counter": [0, 0, 0, 0, 0],
     "required": [true, true, true, false, false]
   },
@@ -72,7 +72,7 @@
     "image": "https://eyejam.agency/wp-content/uploads/2021/11/chips.jpg",
     "details": "Two 100% fresh beef burger patties that are hot,deliciously",
     "preferenceTitle": [
-      "Choose your 2 dips",
+      "Choose your 2 sauce",
       "Choose your 1st drink flavour",
       "Choose your 2nd drink flavour",
       "Would you like to add a side?",
@@ -126,7 +126,7 @@
         { "name": "Small Vanilla Shake", "price": 17.95, "checked": false, "id": 8 }
       ]
     ],
-    "minimum_quatity": [2, 1, 2, null, null],
+    "minimum_quantity": [2, 1, 2, null, null],
     "counter": [0, 0, 0, 0, 0],
     "required": [true, true, true, false, false]
   },
@@ -193,7 +193,7 @@
       ]
     ],
 
-    "minimum_quatity": [2, 1, 1, null, null],
+    "minimum_quantity": [2, 1, 1, null, null],
     "counter": [0, 0, 0, 0, 0],
     "required": [true, true, true, false, false]
   },
@@ -260,7 +260,7 @@
       ]
     ],
 
-    "minimum_quatity": [2, 1, 1, null, null],
+    "minimum_quantity": [2, 1, 1, null, null],
     "counter": [0, 0, 0, 0, 0],
     "required": [true, true, true, false, false]
   },
@@ -329,7 +329,7 @@
       ]
     ],
 
-    "minimum_quatity": [2, 1, 1, null, null],
+    "minimum_quantity": [2, 1, 1, null, null],
     "counter": [0, 0, 0, 0, 0],
     "required": [true, true, true, false, false]
   },
@@ -394,7 +394,7 @@
         { "name": "Small Vanilla Shake", "price": 17.95, "checked": false, "id": 41 }
       ]
     ],
-    "minimum_quatity": [2, 1, 1, null, null],
+    "minimum_quantity": [2, 1, 1, null, null],
     "counter": [0, 0, 0, 0, 0],
     "required": [true, true, true, false, false]
   }

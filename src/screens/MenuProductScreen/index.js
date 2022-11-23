@@ -38,21 +38,21 @@ const MenuProductScreen = ({ navigation, route }) => {
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 1:
-        return <Route1 name={navigation} />;
+        return <Route1 navigation={navigation} />;
       case 2:
-        return <Route2 name={navigation} />;
+        return <Route2 navigation={navigation} />;
       case 3:
-        return <Route3 name={navigation} />;
+        return <Route3 navigation={navigation} />;
       case 4:
-        return <Route4 name={navigation} />;
+        return <Route4 navigation={navigation} />;
       case 5:
-        return <Route5 name={navigation} />;
+        return <Route5 navigation={navigation} />;
       case 6:
-        return <Route6 name={navigation} />;
+        return <Route6 navigation={navigation} />;
       case 7:
-        return <Route7 name={navigation} />;
+        return <Route7 navigation={navigation} />;
       case 8:
-        return <Route8 name={navigation} />;
+        return <Route8 navigation={navigation} />;
       default:
         return null;
     }

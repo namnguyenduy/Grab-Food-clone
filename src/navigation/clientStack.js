@@ -6,13 +6,18 @@ import SearchScreen from "../screens/SearchScreen";
 import SearchResultScreen from "../screens/SearchResultScreen";
 import RestaurantHomeScreen from "../screens/RestaurantHomeScreen";
 import MenuProductScreen from "../screens/MenuProductScreen";
+import PreferenceScreen from "../screens/PreferenceScreen";
 
 const ClientSearch = createStackNavigator();
 
 const ClientStack = ({ navigation, route }) => {
   useLayoutEffect(() => {
     const routeName = getFocusedRouteNameFromRoute(route);
-    if (routeName === "RestaurantHomeScreen" || routeName === "MenuProductScreen") {
+    if (
+      routeName === "RestaurantHomeScreen" ||
+      routeName === "MenuProductScreen" ||
+      routeName === "PreferenceScreen"
+    ) {
       navigation.setOptions({ tabBarStyle: { display: "none" } });
     } else {
       navigation.setOptions({ tabBarStyle: { display: "flex" } });
@@ -45,6 +50,13 @@ const ClientStack = ({ navigation, route }) => {
       <ClientSearch.Screen
         name="MenuProductScreen"
         component={MenuProductScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <ClientSearch.Screen
+        name="PreferenceScreen"
+        component={PreferenceScreen}
         options={{
           headerShown: false,
         }}

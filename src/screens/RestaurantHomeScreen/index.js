@@ -53,7 +53,7 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView className="flex-1">
       <ScrollView>
-        <View className="mb-5">
+        <View className="pb-5" style={{ backgroundColor: colors.cardBackground }}>
           <RestaurantHeader id={id} navigation={navigation} />
           {restaurantData[id].discount && (
             <View className="p-[3px] items-center justify-center">
@@ -62,41 +62,43 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
               </Text>
             </View>
           )}
-          <View className="flex-row flex-1 mt-[5px] mx-[10px] justify-between">
-            <View className="w-[200px]">
-              <Text
-                className="w-full text-xl font-bold"
-                numberOfLines={2}
-                style={{ color: colors.grey1 }}
-              >
-                {restaurantData[id].restaurantName}
-              </Text>
-              <Text className="text-sm" style={{ color: colors.grey3 }}>
-                {restaurantData[id].foodType}
-              </Text>
-              <View className="flex-row items-center mt-[5px] space-x-1">
-                <Icon type="antdesign" name="star" color={colors.yellow} size={15} />
-                <Text style={styles.text3}>{restaurantData[id].averageReview}</Text>
-                <Text style={styles.text3}>({restaurantData[id].numberOfReview})</Text>
-                <Text style={{ color: colors.grey3 }}>&#8226;</Text>
-                <Text style={styles.text3}>{restaurantData[id].farAway} km</Text>
-              </View>
-            </View>
-
-            <View className="flex-row justify-around flex-1">
-              <View className="items-center">
-                <Text style={styles.text1}>Lấy</Text>
-                <View className="items-center justify-around mt-[5px]">
-                  <Text style={styles.text2}>{restaurantData[id].collectTime}</Text>
-                  <Text style={styles.text3}>phút</Text>
+          <View className="py-[10px]">
+            <View className="flex-row flex-1 mt-[5px] mx-[10px] justify-between">
+              <View className="" style={{ width: SCREEN_WIDTH * 0.6 }}>
+                <Text
+                  className="w-full text-xl font-bold"
+                  numberOfLines={2}
+                  style={{ color: colors.grey1 }}
+                >
+                  {restaurantData[id].restaurantName}
+                </Text>
+                <Text className="text-sm" style={{ color: colors.grey3 }}>
+                  {restaurantData[id].foodType}
+                </Text>
+                <View className="flex-row items-center mt-[5px] space-x-1">
+                  <Icon type="antdesign" name="star" color={colors.yellow} size={15} />
+                  <Text style={styles.text3}>{restaurantData[id].averageReview}</Text>
+                  <Text style={styles.text3}>({restaurantData[id].numberOfReview})</Text>
+                  <Text style={{ color: colors.grey3 }}>&#8226;</Text>
+                  <Text style={styles.text3}>{restaurantData[id].farAway} km</Text>
                 </View>
               </View>
 
-              <View className="items-center">
-                <Text style={styles.text1}>Giao</Text>
-                <View className="items-center justify-around mt-[5px]">
-                  <Text style={styles.text2}>{restaurantData[id].deliveryTime}</Text>
-                  <Text style={styles.text3}>phút</Text>
+              <View className="flex-row justify-around flex-1">
+                <View className="items-center">
+                  <Text style={styles.text1}>Lấy</Text>
+                  <View className="items-center justify-around mt-[5px]">
+                    <Text style={styles.text2}>{restaurantData[id].collectTime}</Text>
+                    <Text style={styles.text3}>phút</Text>
+                  </View>
+                </View>
+
+                <View className="items-center">
+                  <Text style={styles.text1}>Giao</Text>
+                  <View className="items-center justify-around mt-[5px]">
+                    <Text style={styles.text2}>{restaurantData[id].deliveryTime}</Text>
+                    <Text style={styles.text3}>phút</Text>
+                  </View>
                 </View>
               </View>
             </View>

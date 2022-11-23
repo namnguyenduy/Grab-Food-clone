@@ -43,6 +43,7 @@ yarn add react-native-animatable
     |   |-- RestaurantTabs
     |       |-- MenuScreen.js
     |   |-- MenuTabs
+    |   |-- PreferenceScreen
     |-- components
     |   |-- Header.js
     |   |-- HomeHeader.js
