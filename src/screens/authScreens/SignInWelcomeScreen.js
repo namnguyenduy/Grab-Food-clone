@@ -1,33 +1,46 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import { View, Text, StyleSheet, Image, ImageBackground, Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "@rneui/themed";
 import Carousel from "react-native-snap-carousel";
+import { onAuthStateChanged } from "firebase/auth";
 
-import { title, colors, parameters } from "../../global/styles";
-import { ListItemSubtitle } from "@rneui/base/dist/ListItem/ListItem.Subtitle";
+import { colors, parameters } from "../../global/styles";
+import { SignInContext } from "../../contexts/authContext";
+import { auth } from "../../../firebase";
 
+const windowWidth = Dimensions.get("window").width;
+const carouselItems = [
+  {
+    image: require("../../../assets/slide/slide1.jpg"),
+  },
+  {
+    image: require("../../../assets/slide/slide2.jpg"),
+  },
+  {
+    image: require("../../../assets/slide/slide3.jpg"),
+  },
+  {
+    image: require("../../../assets/slide/slide4.jpg"),
+  },
+  {
+    image: require("../../../assets/slide/slide5.jpg"),
+  },
+];
 const SignInWelcomeScreen = ({ navigation }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselRef = useRef(null);
-  const windowWidth = Dimensions.get("window").width;
-  const carouselItems = [
-    {
-      image: require("../../../assets/slide/slide1.jpg"),
-    },
-    {
-      image: require("../../../assets/slide/slide2.jpg"),
-    },
-    {
-      image: require("../../../assets/slide/slide3.jpg"),
-    },
-    {
-      image: require("../../../assets/slide/slide4.jpg"),
-    },
-    {
-      image: require("../../../assets/slide/slide5.jpg"),
-    },
-  ];
+  const { dispatchSignedIn } = useContext(SignInContext);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatchSignedIn({ type: "SIGN_IN", payload: { userToken: "signed-in" } });
+      } else {
+        dispatchSignedIn({ type: "SIGN_IN", payload: { userToken: null } });
+      }
+    });
+  }, []);
   const renderCarouselItem = ({ item, index }) => {
     return (
       <View className="flex-1 ">
