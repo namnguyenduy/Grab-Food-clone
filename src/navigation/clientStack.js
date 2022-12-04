@@ -7,6 +7,8 @@ import SearchResultScreen from "../screens/SearchResultScreen";
 import RestaurantHomeScreen from "../screens/RestaurantHomeScreen";
 import MenuProductScreen from "../screens/MenuProductScreen";
 import PreferenceScreen from "../screens/PreferenceScreen";
+import PreparingOrderScreen from "../screens/PreparingOrderScreen";
+import DeliveryScreen from "../screens/DeliveryScreen";
 
 const ClientSearch = createStackNavigator();
 
@@ -16,7 +18,9 @@ const ClientStack = ({ navigation, route }) => {
     if (
       routeName === "RestaurantHomeScreen" ||
       routeName === "MenuProductScreen" ||
-      routeName === "PreferenceScreen"
+      routeName === "PreferenceScreen" ||
+      routeName === "PreparingOrderScreen" ||
+      routeName === "Delivery"
     ) {
       navigation.setOptions({ tabBarStyle: { display: "none" } });
     } else {
@@ -60,6 +64,16 @@ const ClientStack = ({ navigation, route }) => {
         options={{
           headerShown: false,
         }}
+      />
+      <ClientSearch.Screen
+        name="PreparingOrderScreen"
+        component={PreparingOrderScreen}
+        options={{ presentation: "fullScreenModal", headerShown: false }}
+      />
+      <ClientSearch.Screen
+        name="Delivery"
+        component={DeliveryScreen}
+        options={{ presentation: "fullScreenModal", headerShown: false }}
       />
     </ClientSearch.Navigator>
   );

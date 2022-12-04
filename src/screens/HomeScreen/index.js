@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -18,11 +18,30 @@ import { colors, parameters } from "../../global/styles";
 import filterData from "../../assets/data/filterData.json";
 import restaurantsData from "../../assets/data/restaurantsData.json";
 import { FoodCard } from "../../components";
+import { db } from "../../../firebase";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const HomeScreen = ({ navigation }) => {
   const [delivery, setDelivery] = useState(true);
   const [indexCheck, setIndexCheck] = useState("0");
+  const [categoriesData, setCategoriesData] = useState(filterData);
+  const categoryRef = db.collection("categories");
+
+  const getCategoryDatas = async () => {
+    categoryRef.onSnapshot((querySnapshot) => {
+      const categories = [];
+      querySnapshot.forEach((documentSnapshot) => {
+        categories.push({
+          ...documentSnapshot.data(),
+          key: documentSnapshot.id,
+        });
+      });
+      setCategoriesData(categories);
+    });
+  };
+  useEffect(() => {
+    getCategoryDatas();
+  }, []);
 
   const CategoriesRender = ({ item, index }) => (
     <Pressable onPress={() => setIndexCheck(item.id)}>
@@ -144,7 +163,7 @@ const HomeScreen = ({ navigation }) => {
             <FlatList
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              data={filterData}
+              data={categoriesData}
               keyExtractor={(item) => item.id}
               extraData={indexCheck}
               renderItem={CategoriesRender}

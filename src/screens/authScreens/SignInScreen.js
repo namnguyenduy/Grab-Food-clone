@@ -11,7 +11,11 @@ import {
 import * as Animatable from "react-native-animatable";
 import { Icon, SocialIcon, Button } from "@rneui/themed";
 import { Formik } from "formik";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 
 import { auth } from "../../../firebase";
 import { colors, parameters } from "../../global/styles";
@@ -41,6 +45,20 @@ const SignInScreen = ({ navigation }) => {
       }
     }
   };
+
+  const signInWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      if (result) {
+        dispatchSignedIn({ type: "SIGN_IN", payload: { userToken: "signed-in" } });
+      }
+    } catch (error) {
+      console.log(error);
+      Alert.alert(error.code, error.message);
+    }
+  };
+
   const handleVisiblePassword = () => {
     setVisiblePassword(!visiblePassword);
   };
@@ -151,7 +169,7 @@ const SignInScreen = ({ navigation }) => {
             button
             type="google"
             style={styles.socialIcon}
-            onPress={() => {}}
+            onPress={signInWithGoogle}
           />
         </View>
 

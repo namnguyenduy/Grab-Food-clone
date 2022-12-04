@@ -20,10 +20,11 @@ import menuDetailedData from "../../assets/data/menuDetailedData.json";
 const width = Dimensions.get("window").width;
 const PreferenceScreen = ({ navigation, route }) => {
   const { id } = route.params;
-  const { meal, details, price, preferenceData, required, minimum_quantity } =
+  const { meal, details, price, preferenceData, required, minimum_quantity, counter } =
     menuDetailedData[id];
 
-  const [preference] = useState(preferenceData);
+  const [preference, setPreference] = useState(preferenceData);
+  const [checkCounter, setCheckCounter] = useState(counter);
 
   const currencyCodes = getSupportedCurrencies();
   const [valueFormattedWithSymbol, valueFormattedWithoutSymbol, symbol] = formatCurrency({
@@ -116,26 +117,56 @@ const PreferenceScreen = ({ navigation, route }) => {
                   </View>
 
                   <View>
-                    {item.map((option) => (
-                      <View className="mb-[5px] border-b border-b-grey5" key={option.id}>
-                        <View className="flex-row items-center justify-between pr-[10px]">
-                          <View className="flex-row items-center">
-                            <CheckBox
-                              center
-                              checkedIcon="check-square-o"
-                              uncheckedIcon="square-o"
-                              checked={false}
-                              checkedColor={colors.primary}
-                            />
+                    {item.map((options) => (
+                      <TouchableOpacity
+                        key={options.id}
+                        onPress={() => {
+                          const idPreference = preference.indexOf(item);
+                          if (minimum_quantity[idPreference] !== null) {
+                            const check = item.filter((items) =>
+                              items.checked ? items : null
+                            );
+                            preference[idPreference].forEach((i) => {
+                              if (i.id === options.id) {
+                                if (check.length < minimum_quantity[idPreference]) {
+                                  i.checked = !i.checked;
+                                } else {
+                                  i.checked = false;
+                                }
+                              }
+                            });
+                            counter[idPreference] = counter[idPreference] + 1;
+                            setPreference([...preference]);
+                            setCheckCounter([...counter]);
+                          } else {
+                            preference[idPreference].forEach((i) => {
+                              if (i.id === options.id) {
+                                i.checked = !i.checked;
+                              }
+                            });
+                          }
+                        }}
+                      >
+                        <View className="mb-[5px] border-b border-b-grey5">
+                          <View className="flex-row items-center justify-between pr-[10px]">
+                            <View className="flex-row items-center">
+                              <CheckBox
+                                center
+                                checkedIcon="check-square-o"
+                                uncheckedIcon="square-o"
+                                checked={options.checked}
+                                checkedColor={colors.primary}
+                              />
+                              <Text className="text-base" style={{ color: colors.grey1 }}>
+                                {options.name}
+                              </Text>
+                            </View>
                             <Text className="text-base" style={{ color: colors.grey1 }}>
-                              {option.name}
+                              +{options.price}
                             </Text>
                           </View>
-                          <Text className="text-base" style={{ color: colors.grey1 }}>
-                            +{option.price}
-                          </Text>
                         </View>
-                      </View>
+                      </TouchableOpacity>
                     ))}
                   </View>
                 </View>
@@ -163,7 +194,10 @@ const PreferenceScreen = ({ navigation, route }) => {
           </TouchableWithoutFeedback>
         </View>
         <View className="items-center p-[10px] bg-white">
-          <TouchableOpacity className="items-center py-[15px] rounded-md w-80 bg-primary">
+          <TouchableOpacity
+            className="items-center py-[15px] rounded-md w-80 bg-primary"
+            onPress={() => navigation.navigate("PreparingOrderScreen")}
+          >
             <Text className="font-bold font-lg" style={{ color: colors.cardBackground }}>
               Thêm vào giỏ hàng - 25.00
             </Text>

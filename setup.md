@@ -44,6 +44,9 @@ yarn add react-native-animatable
     |       |-- MenuScreen.js
     |   |-- MenuTabs
     |   |-- PreferenceScreen
+    |   |-- PreparingOrderScreen
+    |   |-- DeliveryScreen
+    |   |-- BasketScreen
     |-- components
     |   |-- Header.js
     |   |-- HomeHeader.js
@@ -112,6 +115,7 @@ yarn add react-native-swiper
 
 - [https://github.com/meliorence/react-native-snap-carousel]
 - Fix issues when instal `Reactive Native Snap Carousel` : [https://stackoverflow.com/questions/73149910/react-native-0-69-1-i-am-facing-issue-deprecated-react-native-prop-types]
+- [https://stackoverflow.com/questions/72755476/invariant-violation-viewproptypes-has-been-removed-from-react-native-migrate-t]
 
 ```
 yarn add react-native-snap-carousel
@@ -245,10 +249,42 @@ expo install @react-native-async-storage/async-storage
 
 - In tab `Authentication` -> click `add user`
 
+### 10.2 Setup `FireStore`
+
+- [https://firebase.google.com/docs/firestore/quickstart]
+- Fix error: @firebase/firestore: Firestore (9.14.0): Uncaught Error in snapshot listener: FirebaseError: [code=permission-denied]: Missing or insufficient permissions.
+  [https://stackoverflow.com/questions/46590155/firestore-permission-denied-missing-or-insufficient-permissions]
+- Click `build` -> `firestore database`
+- In `data` -> click `start collection` -> pass `collection id` (name of table) -> click `auto id` -> add `field`
+
+### 10.3 Setup `Google sign in`
+
+- [https://firebase.google.com/docs/auth/web/google-signin]
+- `Sign-in-method` -> `add new provider` -> `google` -> enable -> save
+
 ## 11: Install `formik`
 
 - [https://formik.org/docs/overview]
 
 ```
 yarn add formik
+```
+
+## 12: Install `React Native Process`
+
+```
+yarn add react-native-progress
+yarn add react-native-svg
+```
+
+## 13: Install `React Native Maps`
+
+```
+yarn add react-native-maps
+```
+
+## 14: Install `Redux`
+
+```
+yarn add @reduxjs/toolkit react-redux
 ```
