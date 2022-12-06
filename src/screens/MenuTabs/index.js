@@ -18,25 +18,6 @@ const Route1 = ({ navigation }) => {
             // onPress={() => navigation.navigate("PreferenceScreen", { id: item.id })}
             >
               <MenuCard menu={item} />
-              {isPressed && (
-                <View className="px-4 bg-white">
-                  <View className="flex-row items-center pb-3 space-x-2">
-                    <TouchableOpacity
-                      disabled={!items.length}
-                      onPress={removeItemFromBasket}
-                    >
-                      <MinusCircleIcon
-                        size={40}
-                        color={items.length > 0 ? "#00CCBB" : "gray"}
-                      />
-                    </TouchableOpacity>
-                    <Text>{items.length}</Text>
-                    <TouchableOpacity onPress={addItemToBasket}>
-                      <PlusCircleIcon size={40} color="#00CCBB" />
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              )}
             </TouchableOpacity>
           )}
           initialNumToRender={2}

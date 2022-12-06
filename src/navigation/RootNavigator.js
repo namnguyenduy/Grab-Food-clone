@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import { Provider } from "react-redux";
 
 import AuthStack from "./authStack";
 import AppStack from "./appStack";
 import { SignInContext } from "../contexts/authContext";
-import { RestaurantContextProvider } from "../contexts/restaurantContext";
-import { BasketContextProvider } from "../contexts/basketContext";
+import { store } from "../../store";
 
 const RootNavigator = () => {
   const { signIn } = useContext(SignInContext);
@@ -14,11 +14,9 @@ const RootNavigator = () => {
       {signIn.userToken === null ? (
         <AuthStack />
       ) : (
-        <RestaurantContextProvider>
-          <BasketContextProvider>
-            <AppStack />
-          </BasketContextProvider>
-        </RestaurantContextProvider>
+        <Provider store={store}>
+          <AppStack />
+        </Provider>
       )}
     </NavigationContainer>
   );

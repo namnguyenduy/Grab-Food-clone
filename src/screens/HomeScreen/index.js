@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -15,60 +15,14 @@ import CountDown from "react-native-countdown-component";
 
 import HomeHeader from "../../components/HomeHeader";
 import { colors, parameters } from "../../global/styles";
-import filterData from "../../assets/data/filterData.json";
+
 import restaurantsData from "../../assets/data/restaurantsData.json";
 import { FoodCard } from "../../components";
-import { db } from "../../../firebase";
+import Categories from "../../components/Categories";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const HomeScreen = ({ navigation }) => {
   const [delivery, setDelivery] = useState(true);
-  const [indexCheck, setIndexCheck] = useState("0");
-  const [categoriesData, setCategoriesData] = useState(filterData);
-  const categoryRef = db.collection("categories");
-
-  const getCategoryDatas = async () => {
-    categoryRef.onSnapshot((querySnapshot) => {
-      const categories = [];
-      querySnapshot.forEach((documentSnapshot) => {
-        categories.push({
-          ...documentSnapshot.data(),
-          key: documentSnapshot.id,
-        });
-      });
-      setCategoriesData(categories);
-    });
-  };
-  useEffect(() => {
-    getCategoryDatas();
-  }, []);
-
-  const CategoriesRender = ({ item, index }) => (
-    <Pressable onPress={() => setIndexCheck(item.id)}>
-      <View
-        className="justify-center items-center p-[5px] m-[10px] w-20 h-[100px] rounded-md"
-        style={
-          indexCheck === item.id
-            ? { ...styles.smallCardSelected }
-            : { ...styles.smallCard }
-        }
-      >
-        <Image className="h-[60px] w-[60px] rounded-full" source={{ uri: item.image }} />
-        <View>
-          <Text
-            className="mt-[10px]"
-            style={
-              indexCheck === item.id
-                ? { ...styles.smallCardTextSelected }
-                : { ...styles.smallCardText }
-            }
-          >
-            {item.name}
-          </Text>
-        </View>
-      </View>
-    </Pressable>
-  );
 
   return (
     <View className="flex-1">
@@ -154,23 +108,7 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </View>
 
-        <View style={styles.horizontalCard}>
-          <View style={styles.headerTextView}>
-            <Text style={styles.headerText}>Danh mục</Text>
-          </View>
-
-          <View>
-            <FlatList
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              data={categoriesData}
-              keyExtractor={(item) => item.id}
-              extraData={indexCheck}
-              renderItem={CategoriesRender}
-              initialNumToRender={2}
-            />
-          </View>
-        </View>
+        <Categories />
 
         <View style={styles.horizontalCard}>
           <View style={styles.headerTextView}>

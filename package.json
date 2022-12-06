@@ -18,6 +18,8 @@
     "@reduxjs/toolkit": "^1.9.1",
     "@rneui/base": "^4.0.0-rc.6",
     "@rneui/themed": "^4.0.0-rc.6",
+    "@sanity/client": "^3.4.1",
+    "@sanity/image-url": "^1.0.1",
     "deprecated-react-native-prop-types": "2.2.0",
     "expo": "~46.0.16",
     "expo-status-bar": "~1.4.0",

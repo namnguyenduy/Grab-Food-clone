@@ -6,13 +6,13 @@ import { Icon } from "@rneui/themed";
 import * as Progress from "react-native-progress";
 import MapView, { Marker } from "react-native-maps";
 
-//import { selectRestaurant } from "../features/restaurantSlice";
-import restaurantDatas from "../../assets/data/restaurantsData.json";
+import { selectRestaurant } from "../../features/restaurantSlice";
+// import restaurantDatas from "../../assets/data/restaurantsData.json";
 
 const DeliveryScreen = () => {
   const navigation = useNavigation();
-  //const restaurant = useSelector(selectRestaurant);
-  const restaurant = restaurantDatas[0];
+  const restaurant = useSelector(selectRestaurant);
+  // const restaurant = restaurantDatas[0];
   return (
     <View className="bg-[#00CCBB] flex-1">
       <SafeAreaView className="z-50">
@@ -44,8 +44,8 @@ const DeliveryScreen = () => {
 
       <MapView
         initialRegion={{
-          latitude: restaurant.coordinates.lat,
-          longitude: restaurant.coordinates.lng,
+          latitude: restaurant.lat,
+          longitude: restaurant.long,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         }}
@@ -54,11 +54,11 @@ const DeliveryScreen = () => {
       >
         <Marker
           coordinate={{
-            latitude: restaurant.coordinates.lat,
-            longitude: restaurant.coordinates.lng,
+            latitude: restaurant.lat,
+            longitude: restaurant.long,
           }}
           title={restaurant.restaurantName}
-          // description={restaurant.short_description}
+          description={restaurant.short_description}
           identifier="origin"
           pinColor="#00CCBB"
         />

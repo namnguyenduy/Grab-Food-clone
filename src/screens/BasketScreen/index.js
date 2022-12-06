@@ -2,25 +2,25 @@ import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import React, { useMemo, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-//import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Currency from "react-currency-formatter";
 import { Icon } from "@rneui/themed";
 
-// import { selectRestaurant } from "../features/restaurantSlice";
-// import {
-//   removeFromBasket,
-//   selectBasketItems,
-//   selectBasketTotal,
-// } from "../features/basketSlice";
+import { selectRestaurant } from "../features/restaurantSlice";
+import {
+  removeFromBasket,
+  selectBasketItems,
+  selectBasketTotal,
+} from "../../features/basketSlice";
 //import { urlFor } from "../sanity";
 
 const BasketScreen = () => {
   const navigation = useNavigation();
-  //const restaurant = useSelector(selectRestaurant);
-  //const items = useSelector(selectBasketItems);
-  //const basketTotal = useSelector(selectBasketTotal);
+  const restaurant = useSelector(selectRestaurant);
+  const items = useSelector(selectBasketItems);
+  const basketTotal = useSelector(selectBasketTotal);
   const [groupedItemsInBasket, setGroupedItemsInBasket] = useState([]);
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useMemo(() => {
     const groupedItems = items.reduce((results, item) => {
@@ -38,8 +38,7 @@ const BasketScreen = () => {
           <View>
             <View>
               <Text className="text-lg font-bold text-center">Basket</Text>
-              {/* <Text className="text-center text-gray-400">{restaurant.title}</Text> */}
-              <Text className="text-center text-gray-400">Day la ten nha hang</Text>
+              <Text className="text-center text-gray-400">{restaurant.title}</Text>
             </View>
 
             <TouchableOpacity
@@ -101,7 +100,7 @@ const BasketScreen = () => {
           <View className="flex-row justify-between">
             <Text className="text-gray-400">Subtotal</Text>
             <Text className="text-gray-400">
-              {/* <Currency quantity={basketTotal} /> */}
+              <Currency quantity={basketTotal} />
               11
             </Text>
           </View>
@@ -116,8 +115,7 @@ const BasketScreen = () => {
           <View className="flex-row justify-between">
             <Text>Order Total</Text>
             <Text className="font-extrabold">
-              {/* <Currency quantity={basketTotal + 1.23} /> */}
-              12
+              <Currency quantity={basketTotal + 1.23} />
             </Text>
           </View>
 

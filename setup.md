@@ -57,6 +57,7 @@ yarn add react-native-animatable
     |   |-- ProductCard.js
     |   |-- RestaurantHeader.js
     |   |-- MenuCard.js
+    |   |-- Categories.js
     |-- global
     |   |-- styles.js
     |-- navigation
@@ -70,6 +71,9 @@ yarn add react-native-animatable
     |   |-- AuthContext.js
     |-- reducers
         |-- authReducers.js
+    |-- features
+        |-- basketSlice.js
+        |-- restaurantSlice.js
 
 
 ```
