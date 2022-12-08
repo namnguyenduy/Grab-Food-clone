@@ -4,8 +4,9 @@ import { Icon } from "@rneui/themed";
 
 import { colors } from "../global/styles";
 import restaurantData from "../assets/data/restaurantsData.json";
+import { urlFor } from "../../sanity";
 
-const RestaurantHeader = ({ navigation, id }) => {
+const RestaurantHeader = ({ navigation, id, image }) => {
   const [liked, setLiked] = useState(false);
   const [counter, setCounter] = useState(-2);
   const [visible, setVisible] = useState(false);
@@ -39,36 +40,38 @@ const RestaurantHeader = ({ navigation, id }) => {
 
   return (
     <View className="h-[150px]">
-      <ImageBackground className="h-full" source={{ uri: restaurantData[id].images }}>
-        <View className="flex-row items-baseline justify-between">
-          <View style={styles.circle}>
-            <Icon
-              name="arrow-left"
-              type="material-community"
-              size={25}
-              color={colors.grey1}
-              onPress={() => navigation.goBack()}
-            />
-          </View>
+      {image && (
+        <ImageBackground className="h-full" source={{ uri: urlFor(image).url() }}>
+          <View className="flex-row items-baseline justify-between">
+            <View style={styles.circle}>
+              <Icon
+                name="arrow-left"
+                type="material-community"
+                size={25}
+                color={colors.grey1}
+                onPress={() => navigation.goBack()}
+              />
+            </View>
 
-          <View style={styles.circle}>
-            <Icon
-              name={liked && index2 == counter ? "favorite" : "favorite-border"}
-              type="material"
-              size={30}
-              color={colors.red}
-              onPress={likeHandler}
-            />
+            <View style={styles.circle}>
+              <Icon
+                name={liked && index2 == counter ? "favorite" : "favorite-border"}
+                type="material"
+                size={30}
+                color={colors.red}
+                onPress={likeHandler}
+              />
+            </View>
           </View>
-        </View>
-        <View className="items-center justify-center">
-          {visible && index2 == counter && (
-            <Animated.View style={{ transform: [{ scale: currentValue }] }}>
-              <Icon name="favorite" type="material" size={40} color={colors.red} />
-            </Animated.View>
-          )}
-        </View>
-      </ImageBackground>
+          <View className="items-center justify-center">
+            {visible && index2 == counter && (
+              <Animated.View style={{ transform: [{ scale: currentValue }] }}>
+                <Icon name="favorite" type="material" size={40} color={colors.red} />
+              </Animated.View>
+            )}
+          </View>
+        </ImageBackground>
+      )}
     </View>
   );
 };

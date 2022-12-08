@@ -25,5 +25,12 @@ export default {
       type: "image",
       title: "Image of the Dish",
     },
+    {
+      name: "categories",
+      type: "array",
+      title: "Categories",
+      validation: (Rule) => Rule.required(),
+      of: [{ type: "reference", to: [{ type: "category" }] }],
+    },
   ],
 };

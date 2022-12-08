@@ -3,11 +3,10 @@ import React, { useEffect, useState } from "react";
 
 import sanityClient from "../../sanity";
 import { urlFor } from "../../sanity";
-import filterData from "../assets/data/filterData.json";
 import { colors } from "../global/styles";
 
 const Categories = () => {
-  const [categoriesData, setCategoriesData] = useState(filterData);
+  const [categoriesData, setCategoriesData] = useState([]);
   const [indexCheck, setIndexCheck] = useState("8e850239-8b9e-4916-9719-1c95ed208a1d");
 
   useEffect(() => {
@@ -18,13 +17,12 @@ const Categories = () => {
     `
       )
       .then((data) => {
-        console.log("data: ", JSON.stringify(data, null, 2));
         setCategoriesData(data);
       });
   }, []);
 
   const CategoriesRender = ({ item, index }) => (
-    <Pressable onPress={() => setIndexCheck(item?._id)}>
+    <Pressable onPress={() => setIndexCheck(item?._id)} key={item._id}>
       <View
         className="justify-center items-center p-[5px] m-[10px] w-20 h-[100px] rounded-md"
         style={
@@ -64,7 +62,7 @@ const Categories = () => {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           data={categoriesData}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item?._id}
           extraData={indexCheck}
           renderItem={CategoriesRender}
           initialNumToRender={2}

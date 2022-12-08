@@ -37,6 +37,11 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "farAway",
+      type: "number",
+      title: "Far away from your home to restaurant",
+    },
+    {
       name: "rating",
       type: "number",
       title: "Enter a Rating from (1-5 Stars)",
@@ -72,11 +77,11 @@ export default {
       of: [{ type: "string" }],
     },
     {
-      name: "type",
-      title: "Category",
+      name: "categories",
+      type: "array",
+      title: "Categories",
       validation: (Rule) => Rule.required(),
-      type: "reference",
-      to: [{ type: "category" }],
+      of: [{ type: "reference", to: [{ type: "category" }] }],
     },
     {
       name: "dishes",

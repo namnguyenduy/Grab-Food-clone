@@ -26,18 +26,21 @@ const parameters = {
     borderWidth: 1,
     borderColor: "#26C06A",
 
+    display: "flex",
     alignContent: "center",
     justifyContent: "center",
     paddingHorizontal: 20,
     backgroundColor: "#26C06A",
   },
   buttonTitleStyle: {
+    width: "100%",
     marginTop: -3,
     alignItems: "center",
     justifyContent: "center",
     color: "white",
     fontsize: 20,
     fontWeight: "bold",
+    textAlign: "center",
   },
 };
 

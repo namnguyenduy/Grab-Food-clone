@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -16,12 +16,27 @@ import { colors } from "../../global/styles";
 import { RestaurantHeader } from "../../components";
 import restaurantData from "../../assets/data/restaurantsData.json";
 import { MenuScreen } from "../RestaurantTabs";
+import sanityClient from "../../../sanity";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const initialLayout = { width: SCREEN_WIDTH };
 
 const RestaurantHomeScreen = ({ navigation, route }) => {
-  const { id, restaurant } = route.params;
+  const { id } = route.params;
+  const [restaurant, setRestaurant] = useState([]);
+
+  const getRestaurant = async () => {
+    const data = await sanityClient.fetch(
+      `*[_type == "restaurant" && _id == $id] {
+        ...,
+      }[0]`,
+      { id }
+    );
+    setRestaurant(data);
+  };
+  useEffect(() => {
+    getRestaurant();
+  }, []);
 
   const [routes] = useState([
     { key: "first", title: "Menu" },
@@ -54,11 +69,15 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
     <SafeAreaView className="flex-1">
       <ScrollView>
         <View className="pb-5" style={{ backgroundColor: colors.cardBackground }}>
-          <RestaurantHeader id={id} navigation={navigation} />
-          {restaurantData[id].discount && (
+          <RestaurantHeader
+            image={restaurant?.image?.asset?._ref}
+            id={id}
+            navigation={navigation}
+          />
+          {restaurant?.discount > 0 && (
             <View className="p-[3px] items-center justify-center">
               <Text className="text-sm font-bold uppercase text-primary">
-                giảm {restaurantData[id].discount}% cho đơn hàng trên 100k
+                giảm {restaurant?.discount}% cho đơn hàng trên 100k
               </Text>
             </View>
           )}
@@ -70,17 +89,17 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
                   numberOfLines={2}
                   style={{ color: colors.grey1 }}
                 >
-                  {restaurantData[id].restaurantName}
+                  {restaurant?.name}
                 </Text>
                 <Text className="text-sm" style={{ color: colors.grey3 }}>
-                  {restaurantData[id].foodType}
+                  {restaurant?.foodType?.map((type) => type)}
                 </Text>
                 <View className="flex-row items-center mt-[5px] space-x-1">
                   <Icon type="antdesign" name="star" color={colors.yellow} size={15} />
-                  <Text style={styles.text3}>{restaurantData[id].averageReview}</Text>
-                  <Text style={styles.text3}>({restaurantData[id].numberOfReview})</Text>
+                  <Text style={styles.text3}>{restaurant?.rating}</Text>
+                  <Text style={styles.text3}>({restaurant?.review})</Text>
                   <Text style={{ color: colors.grey3 }}>&#8226;</Text>
-                  <Text style={styles.text3}>{restaurantData[id].farAway} km</Text>
+                  <Text style={styles.text3}>{restaurant?.farAway} km</Text>
                 </View>
               </View>
 
@@ -88,7 +107,7 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
                 <View className="items-center">
                   <Text style={styles.text1}>Lấy</Text>
                   <View className="items-center justify-around mt-[5px]">
-                    <Text style={styles.text2}>{restaurantData[id].collectTime}</Text>
+                    <Text style={styles.text2}>{restaurant?.collectTime}</Text>
                     <Text style={styles.text3}>phút</Text>
                   </View>
                 </View>
@@ -96,7 +115,7 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
                 <View className="items-center">
                   <Text style={styles.text1}>Giao</Text>
                   <View className="items-center justify-around mt-[5px]">
-                    <Text style={styles.text2}>{restaurantData[id].deliveryTime}</Text>
+                    <Text style={styles.text2}>{restaurant?.deliveryTime}</Text>
                     <Text style={styles.text3}>phút</Text>
                   </View>
                 </View>

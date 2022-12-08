@@ -7,8 +7,10 @@ import {
   TextInput,
   Pressable,
   Alert,
+  ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
-import * as Animatable from "react-native-animatable";
+
 import { Icon, SocialIcon, Button } from "@rneui/themed";
 import { Formik } from "formik";
 import {
@@ -24,14 +26,17 @@ import { SignInContext } from "../../contexts/authContext";
 
 const SignInScreen = ({ navigation }) => {
   const [visiblePassword, setVisiblePassword] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const { dispatchSignedIn } = useContext(SignInContext);
 
   const signIn = async ({ email, password }) => {
+    setLoading(true);
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       if (user) {
         dispatchSignedIn({ type: "SIGN_IN", payload: { userToken: "signed-in" } });
+        setLoading(false);
       }
     } catch (error) {
       if (error.code === "auth/wrong-password") {
@@ -129,19 +134,26 @@ const SignInScreen = ({ navigation }) => {
               </View>
             </View>
 
-            <View className="ml-[30px]">
+            <TouchableOpacity
+              className="ml-[30px]"
+              onPress={() => navigation.navigate("ForgotPassWordScreen")}
+            >
               <Text style={{ ...styles.text, textDecorationLine: "underline" }}>
                 Quên mật khẩu ?
               </Text>
-            </View>
+            </TouchableOpacity>
 
             <View className="mx-5 mt-[25px]">
-              <Button
-                title="Đăng nhập"
-                buttonStyle={parameters.styleButton}
-                titleStyle={parameters.buttonTitle}
+              <TouchableOpacity
+                style={parameters.styleButton}
                 onPress={props.handleSubmit}
-              />
+              >
+                {loading ? (
+                  <ActivityIndicator size="large" color="#fff" />
+                ) : (
+                  <Text style={parameters.buttonTitleStyle}>Đăng nhập</Text>
+                )}
+              </TouchableOpacity>
             </View>
           </View>
         )}

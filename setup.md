@@ -33,6 +33,7 @@ yarn add react-native-animatable
     |      |-- SignInScreen.js
     |      |-- SignInWelcomeScreen.js
     |      |-- SignUpScreen.js
+    |      |-- ForgotPasswordScreen.js
     |   |-- HomeScreen
     |   |-- SearchScreen
     |   |-- MyOrdersScreen
@@ -58,6 +59,7 @@ yarn add react-native-animatable
     |   |-- RestaurantHeader.js
     |   |-- MenuCard.js
     |   |-- Categories.js
+    |   |-- Featured.js
     |-- global
     |   |-- styles.js
     |-- navigation
@@ -292,3 +294,7 @@ yarn add react-native-maps
 ```
 yarn add @reduxjs/toolkit react-redux
 ```
+
+## 15: Build apk
+
+- [https://docs.expo.dev/build-reference/apk/]

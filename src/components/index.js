@@ -7,3 +7,5 @@ export { default as RestaurantHeader } from "./RestaurantHeader";
 export { default as SearchComponent } from "./SearchComponent";
 export { default as SearchResultCard } from "./SearchResultCard";
 export { default as MenuCard } from "./MenuCard";
+export { default as Categories } from "./Categories";
+export { default as Featured } from "./Featured";

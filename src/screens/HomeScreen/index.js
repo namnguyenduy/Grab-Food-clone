@@ -1,28 +1,33 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-  FlatList,
-  Pressable,
-  Image,
-  Dimensions,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 import { Icon } from "@rneui/themed";
-import CountDown from "react-native-countdown-component";
 
 import HomeHeader from "../../components/HomeHeader";
 import { colors, parameters } from "../../global/styles";
 
 import restaurantsData from "../../assets/data/restaurantsData.json";
-import { FoodCard } from "../../components";
-import Categories from "../../components/Categories";
+import { Categories, Featured } from "../../components";
+import sanityClient from "../../../sanity";
 
-const SCREEN_WIDTH = Dimensions.get("window").width;
 const HomeScreen = ({ navigation }) => {
   const [delivery, setDelivery] = useState(true);
+  const [featuredCategories, setFeaturedCategories] = useState([]);
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+        *[_type == "featured"] {
+          ...,
+          restaurants[]-> {
+            ...
+          }
+        }
+    `
+      )
+      .then((data) => {
+        setFeaturedCategories(data);
+      });
+  }, []);
 
   return (
     <View className="flex-1">
@@ -110,7 +115,15 @@ const HomeScreen = ({ navigation }) => {
 
         <Categories />
 
-        <View style={styles.horizontalCard}>
+        {featuredCategories?.map((featuredCategory) => (
+          <Featured
+            title={featuredCategory.name}
+            id={featuredCategory._id}
+            restaurants={featuredCategory.restaurants}
+            navigation={navigation}
+          />
+        ))}
+        {/* <View style={styles.horizontalCard}>
           <View style={styles.headerTextView}>
             <Text style={styles.headerText}>Free ship bây giờ</Text>
           </View>
@@ -193,7 +206,7 @@ const HomeScreen = ({ navigation }) => {
               </View>
             ))}
           </View>
-        </View>
+        </View> */}
       </ScrollView>
 
       {delivery && (

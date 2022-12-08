@@ -1,25 +1,14 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
-import { Icon } from "@rneui/themed";
 
-import { colors, parameters } from "../global/styles";
+import { colors } from "../global/styles";
+import { urlFor } from "../../sanity";
 
 const FoodCard = ({ onPressFoodCard, restaurantData, screenWidth }) => {
-  const {
-    restaurantName,
-    deliveryAvailable,
-    discountAvailable,
-    discountPercent,
-    numberOfReview,
-    businessAddress,
-    farAway,
-    averageReview,
-    images,
-    deliveryTime,
-  } = restaurantData;
+  const { name, farAway, review, image, deliveryTime } = restaurantData;
 
   return (
-    <TouchableOpacity className="relative">
+    <TouchableOpacity className="relative" onPress={onPressFoodCard}>
       <View
         className="mx-[10px] rounded-md border overflow-hidden"
         style={{ width: screenWidth, borderColor: colors.grey3 }}
@@ -27,7 +16,7 @@ const FoodCard = ({ onPressFoodCard, restaurantData, screenWidth }) => {
         <Image
           className="rounded-t-md h-[150px]"
           style={{ width: screenWidth }}
-          source={{ uri: images }}
+          source={{ uri: urlFor(image?.asset?._ref).url() }}
         />
 
         <View className="ml-[10px]">
@@ -37,7 +26,7 @@ const FoodCard = ({ onPressFoodCard, restaurantData, screenWidth }) => {
               style={{ color: colors.grey1 }}
               numberOfLines={1}
             >
-              {restaurantName}
+              {name}
             </Text>
           </View>
 
@@ -67,7 +56,7 @@ const FoodCard = ({ onPressFoodCard, restaurantData, screenWidth }) => {
         className="absolute t-0 p-[5px] right-[10px] items-center justify-center rounded-t-md rounded-bl-xl"
         style={{ backgroundColor: colors.primary }}
       >
-        <Text className=" text-white text-xl font-bold -mt-[3px]">{averageReview}</Text>
+        <Text className=" text-white text-xl font-bold -mt-[3px]">{review}</Text>
       </View>
     </TouchableOpacity>
   );
