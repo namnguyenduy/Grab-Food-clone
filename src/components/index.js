@@ -6,6 +6,7 @@ export { default as ProductCard } from "./ProductCard";
 export { default as RestaurantHeader } from "./RestaurantHeader";
 export { default as SearchComponent } from "./SearchComponent";
 export { default as SearchResultCard } from "./SearchResultCard";
-export { default as MenuCard } from "./MenuCard";
+export { default as DishRow } from "./DishRow";
 export { default as Categories } from "./Categories";
 export { default as Featured } from "./Featured";
+export { default as BasketIcon } from "./BasketIcon";

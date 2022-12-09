@@ -11,26 +11,54 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Icon } from "@rneui/themed";
 import { TabView, TabBar } from "react-native-tab-view";
+import { useDispatch } from "react-redux";
 
 import { colors } from "../../global/styles";
 import { RestaurantHeader } from "../../components";
 import restaurantData from "../../assets/data/restaurantsData.json";
 import { MenuScreen } from "../RestaurantTabs";
 import sanityClient from "../../../sanity";
+import { setRestaurantInfo } from "../../features/restaurantSlice";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const initialLayout = { width: SCREEN_WIDTH };
 
 const RestaurantHomeScreen = ({ navigation, route }) => {
   const { id } = route.params;
+  const dispatch = useDispatch();
+
   const [restaurant, setRestaurant] = useState([]);
 
   const getRestaurant = async () => {
     const data = await sanityClient.fetch(
-      `*[_type == "restaurant" && _id == $id] {
+      `*[_type == "restaurant" && id == $id] {
         ...,
+        categories[]->{
+          ...
+        } | order(id asc),
+        dishes[]->{
+          ...,
+          categories[]-> {
+            ...
+          }
+        }
       }[0]`,
       { id }
+    );
+    dispatch(
+      setRestaurantInfo({
+        id: data.id,
+        name: data.name,
+        address: data.address,
+        image: data.image,
+        rating: data.rating,
+        genre: data.categories,
+        short_description: data.short_description,
+        collectTime: data.collectTime,
+        deliveryTime: data.deliveryTime,
+        farAway: data.farAway,
+        dishes: data.dishes,
+      })
     );
     setRestaurant(data);
   };
@@ -62,7 +90,10 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
   const updateRoute = () => <View></View>;
 
   const menuPressed = () => {
-    navigation.navigate("MenuProductScreen");
+    navigation.navigate("MenuProductScreen", {
+      idRestaurant: id,
+      menusOfRestaurant: restaurant.categories,
+    });
   };
 
   return (
@@ -92,7 +123,9 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
                   {restaurant?.name}
                 </Text>
                 <Text className="text-sm" style={{ color: colors.grey3 }}>
-                  {restaurant?.foodType?.map((type) => type)}
+                  {restaurant?.foodType?.map((type, index) => {
+                    return index !== restaurant.length - 1 ? `${type}, ` : `${type}`;
+                  })}
                 </Text>
                 <View className="flex-row items-center mt-[5px] space-x-1">
                   <Icon type="antdesign" name="star" color={colors.yellow} size={15} />
@@ -134,7 +167,14 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
             tabBarPosition="top"
           />
         </View>
-        {index === 0 && <MenuScreen onPress={menuPressed} />}
+        {index === 0 && (
+          <MenuScreen
+            menus={restaurant?.categories}
+            navigation={navigation}
+            idRestaurant={id}
+            menusOfRestaurant={restaurant?.categories}
+          />
+        )}
       </ScrollView>
 
       <TouchableOpacity>

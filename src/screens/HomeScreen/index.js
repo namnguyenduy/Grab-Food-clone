@@ -21,7 +21,7 @@ const HomeScreen = ({ navigation }) => {
           restaurants[]-> {
             ...
           }
-        }
+        } | order(id asc)
     `
       )
       .then((data) => {
@@ -118,7 +118,7 @@ const HomeScreen = ({ navigation }) => {
         {featuredCategories?.map((featuredCategory) => (
           <Featured
             title={featuredCategory.name}
-            id={featuredCategory._id}
+            id={featuredCategory.id}
             restaurants={featuredCategory.restaurants}
             navigation={navigation}
           />

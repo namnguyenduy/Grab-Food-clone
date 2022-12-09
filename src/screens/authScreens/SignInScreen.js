@@ -48,6 +48,7 @@ const SignInScreen = ({ navigation }) => {
       } else {
         Alert.alert(error.code, error.message);
       }
+      setLoading(false);
     }
   };
 

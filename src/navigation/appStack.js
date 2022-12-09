@@ -7,6 +7,7 @@ import RestaurantHomeScreen from "../screens/RestaurantHomeScreen";
 import PreparingOrderScreen from "../screens/PreparingOrderScreen";
 import MenuProductScreen from "../screens/MenuProductScreen";
 import DeliveryScreen from "../screens/DeliveryScreen";
+import BasketScreen from "../screens/BasketScreen";
 
 const App = createStackNavigator();
 
@@ -41,6 +42,15 @@ const AppStack = () => {
         name="MenuProductScreen"
         component={MenuProductScreen}
         options={{
+          headerShown: false,
+          ...TransitionPresets.RevealFromBottomAndroid,
+        }}
+      />
+      <App.Screen
+        name="BasketScreen"
+        component={BasketScreen}
+        options={{
+          presentation: "modal",
           headerShown: false,
           ...TransitionPresets.RevealFromBottomAndroid,
         }}

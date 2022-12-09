@@ -1,16 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { formatCurrency, getSupportedCurrencies } from "react-native-format-currency";
+import Currency from "react-currency-formatter";
 
 import { colors } from "../global/styles";
 
 const ProductCard = ({ productsData }) => {
   const { name, price, image } = productsData;
-  const currencyCodes = getSupportedCurrencies();
-  const [valueFormattedWithSymbol, valueFormattedWithoutSymbol, symbol] = formatCurrency({
-    amount: Number(price),
-    code: "VND",
-  });
 
   return (
     <View className="bg-white shadow-md w-[210px] p-[10px] m-[5px]">
@@ -20,7 +15,7 @@ const ProductCard = ({ productsData }) => {
             {name}
           </Text>
           <Text className="text-base" style={{ color: colors.grey1 }}>
-            {valueFormattedWithoutSymbol}
+            <Currency quantity={price} currency="VND" pattern="##,### !" />
           </Text>
         </View>
 

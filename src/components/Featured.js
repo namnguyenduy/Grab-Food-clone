@@ -21,9 +21,9 @@ const Featured = ({ id, title, restaurants, navigation }) => {
         <Text style={styles.headerText}>{title}</Text>
       </View>
 
-      {id !== "fd37490e-eff7-44c5-9da9-a9a572c952e2" ? (
+      {id !== 3 ? (
         <View>
-          {id === "56e2e91c-f20f-439f-81ff-c059cbe3e45c" && (
+          {id === 0 && (
             <View className="flex-row items-center">
               <Text className="text-base ml-[15px]">Ưu đãi trong </Text>
               <CountDown
@@ -46,30 +46,32 @@ const Featured = ({ id, title, restaurants, navigation }) => {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             data={restaurants}
-            keyExtractor={(item) => item?._id}
-            renderItem={({ item }) => (
-              <View className="mr-[5px]">
-                <FoodCard
-                  onPressFoodCard={() =>
-                    navigation.navigate("RestaurantHomeScreen", {
-                      id: item._id,
-                    })
-                  }
-                  restaurantData={item}
-                  screenWidth={SCREEN_WIDTH * 0.8}
-                />
-              </View>
-            )}
+            keyExtractor={(item) => item?.id}
+            renderItem={({ item }) => {
+              return (
+                <View className="mr-[5px]">
+                  <FoodCard
+                    onPressFoodCard={() =>
+                      navigation.navigate("RestaurantHomeScreen", {
+                        id: item?.id,
+                      })
+                    }
+                    restaurantData={item}
+                    screenWidth={SCREEN_WIDTH * 0.8}
+                  />
+                </View>
+              );
+            }}
           />
         </View>
       ) : (
         <View className="pt-[10px]">
           {restaurants.map((item) => (
-            <View key={item?._id} className="pb-5">
+            <View key={item?.id} className="pb-5">
               <FoodCard
                 onPressFoodCard={() =>
                   navigation.navigate("RestaurantHomeScreen", {
-                    id: item?._id,
+                    id: item?.id,
                   })
                 }
                 restaurantData={item}

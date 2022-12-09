@@ -1,5 +1,13 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  ActivityIndicator,
+} from "react-native";
+import React, { useState } from "react";
 import { Icon } from "@rneui/themed";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
@@ -11,12 +19,14 @@ import { auth } from "../../../firebase";
 
 const ForgotPassWordScreen = () => {
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(false);
 
   const handleForgotPassWord = (email) => {
-    console.log(email);
+    setLoading(true);
     try {
       sendPasswordResetEmail(auth, email).then(() => {
         Alert.alert("Gửi mail thành công");
+        setLoading(false);
       });
     } catch (error) {
       if (error.code === "auth/invalid-email") {
@@ -24,6 +34,7 @@ const ForgotPassWordScreen = () => {
       } else {
         Alert.alert(error.code, error.message);
       }
+      setLoading(false);
     }
   };
   return (
@@ -64,7 +75,11 @@ const ForgotPassWordScreen = () => {
                 style={parameters.styleButton}
                 onPress={props.handleSubmit}
               >
-                <Text style={parameters.buttonTitleStyle}>Gửi mail</Text>
+                {loading ? (
+                  <ActivityIndicator size="large" color="#fff" />
+                ) : (
+                  <Text style={parameters.buttonTitleStyle}>Gửi mail</Text>
+                )}
               </TouchableOpacity>
             </View>
           </>

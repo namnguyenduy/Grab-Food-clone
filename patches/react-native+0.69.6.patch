@@ -1,5 +1,13 @@
+diff --git a/node_modules/react-native/ReactAndroid/src/main/jni/first-party/fbjni/.npmignore b/node_modules/react-native/ReactAndroid/src/main/jni/first-party/fbjni/.gitignore
+similarity index 100%
+rename from node_modules/react-native/ReactAndroid/src/main/jni/first-party/fbjni/.npmignore
+rename to node_modules/react-native/ReactAndroid/src/main/jni/first-party/fbjni/.gitignore
+diff --git a/node_modules/react-native/ReactCommon/hermes/inspector/tools/msggen/.npmignore b/node_modules/react-native/ReactCommon/hermes/inspector/tools/msggen/.gitignore
+similarity index 100%
+rename from node_modules/react-native/ReactCommon/hermes/inspector/tools/msggen/.npmignore
+rename to node_modules/react-native/ReactCommon/hermes/inspector/tools/msggen/.gitignore
 diff --git a/node_modules/react-native/index.js b/node_modules/react-native/index.js
-index d59ba34..824fc17 100644
+index d59ba34..315ea85 100644
 --- a/node_modules/react-native/index.js
 +++ b/node_modules/react-native/index.js
 @@ -434,33 +434,17 @@ module.exports = {
@@ -12,7 +20,7 @@ index d59ba34..824fc17 100644
 -      'ColorPropType has been removed from React Native. Migrate to ' +
 -        "ColorPropType exported from 'deprecated-react-native-prop-types'.",
 -    );
-+   get ColorPropType(): $FlowFixMe {
++get ColorPropType(): $FlowFixMe {
 +    return require("deprecated-react-native-prop-types").ColorPropType
    },
    get EdgeInsetsPropType(): $FlowFixMe {

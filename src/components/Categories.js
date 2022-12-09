@@ -7,13 +7,13 @@ import { colors } from "../global/styles";
 
 const Categories = () => {
   const [categoriesData, setCategoriesData] = useState([]);
-  const [indexCheck, setIndexCheck] = useState("8e850239-8b9e-4916-9719-1c95ed208a1d");
+  const [indexCheck, setIndexCheck] = useState(0);
 
   useEffect(() => {
     sanityClient
       .fetch(
         `
-     *[_type == "category" ] 
+     *[_type == "category" ] | order(id asc)
     `
       )
       .then((data) => {
@@ -22,11 +22,11 @@ const Categories = () => {
   }, []);
 
   const CategoriesRender = ({ item, index }) => (
-    <Pressable onPress={() => setIndexCheck(item?._id)} key={item._id}>
+    <Pressable onPress={() => setIndexCheck(item?.id)} key={item?.id}>
       <View
         className="justify-center items-center p-[5px] m-[10px] w-20 h-[100px] rounded-md"
         style={
-          indexCheck === item?._id
+          indexCheck === item?.id
             ? { ...styles.smallCardSelected }
             : { ...styles.smallCard }
         }
@@ -39,7 +39,7 @@ const Categories = () => {
           <Text
             className="mt-[10px]"
             style={
-              indexCheck === item?._id
+              indexCheck === item?.id
                 ? { ...styles.smallCardTextSelected }
                 : { ...styles.smallCardText }
             }
@@ -62,7 +62,7 @@ const Categories = () => {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           data={categoriesData}
-          keyExtractor={(item) => item?._id}
+          keyExtractor={(item) => item?.id}
           extraData={indexCheck}
           renderItem={CategoriesRender}
           initialNumToRender={2}

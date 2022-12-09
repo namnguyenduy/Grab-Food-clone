@@ -3,22 +3,24 @@ import React, { useMemo, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
-import Currency from "react-currency-formatter";
+import { formatCurrency, getSupportedCurrencies } from "react-native-format-currency";
 import { Icon } from "@rneui/themed";
+import Currency from "react-currency-formatter";
 
-import { selectRestaurant } from "../features/restaurantSlice";
+import { selectRestaurant } from "../../features/restaurantSlice";
 import {
   removeFromBasket,
   selectBasketItems,
   selectBasketTotal,
 } from "../../features/basketSlice";
-//import { urlFor } from "../sanity";
+import { urlFor } from "../../../sanity";
 
 const BasketScreen = () => {
   const navigation = useNavigation();
   const restaurant = useSelector(selectRestaurant);
   const items = useSelector(selectBasketItems);
   const basketTotal = useSelector(selectBasketTotal);
+
   const [groupedItemsInBasket, setGroupedItemsInBasket] = useState([]);
   const dispatch = useDispatch();
 
@@ -32,25 +34,20 @@ const BasketScreen = () => {
   }, [items]);
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-primary">
       <View className="flex-1 bg-gray-100">
-        <View className="p-5 border-b border-[#00CCBB] bg-white shadow-xs">
+        <View className="p-5 border-b border-[#00CCBB] bg-primary shadow-xs">
           <View>
             <View>
-              <Text className="text-lg font-bold text-center">Basket</Text>
-              <Text className="text-center text-gray-400">{restaurant.title}</Text>
+              <Text className="text-xl font-bold text-center text-white">Giỏ hàng</Text>
+              <Text className="text-center text-gray-400">{restaurant.name}</Text>
             </View>
 
             <TouchableOpacity
               onPress={navigation.goBack}
               className="absolute bg-gray-100 rounded-full top-3 right-5"
             >
-              <Icon
-                name="close-circle-outline"
-                type="material-community"
-                color="#00CCBB"
-                size={30}
-              />
+              <Icon name="closecircleo" type="antdesign" size={30} />
             </TouchableOpacity>
           </View>
         </View>
@@ -60,9 +57,9 @@ const BasketScreen = () => {
             // source={require("../assets/images/logo/logo.jpg")}
             className="p-4 bg-gray-300 rounded-full h-7 w-7"
           />
-          <Text className="flex-1">Deliver in 50-75 min</Text>
+          <Text className="flex-1">Giao trong 10-15 phút</Text>
           <TouchableOpacity>
-            <Text className="text-[#00CCBB]">Change</Text>
+            <Text className="text-[#00CCBB]">Thay đổi</Text>
           </TouchableOpacity>
         </View>
 
@@ -74,14 +71,14 @@ const BasketScreen = () => {
             >
               <Text className="text-[#00CCBB]">{items.length} x</Text>
               <Image
-                // source={{
-                //   uri: image,
-                // }}
+                source={{
+                  uri: urlFor(items[0]?.image).url(),
+                }}
                 className="w-12 h-12 rounded-full"
               />
               <Text className="flex-1">{items[0]?.name}</Text>
               <Text className="text-gray-400">
-                <Currency quantity={items[0]?.price} />
+                <Currency quantity={items[0]?.price} currency="VND" pattern="##,### !" />
               </Text>
 
               <TouchableOpacity>
@@ -98,32 +95,35 @@ const BasketScreen = () => {
 
         <View className="p-5 mt-5 space-y-4 bg-white">
           <View className="flex-row justify-between">
-            <Text className="text-gray-400">Subtotal</Text>
+            <Text className="text-gray-400">Tạm tính</Text>
             <Text className="text-gray-400">
-              <Currency quantity={basketTotal} />
-              11
+              <Currency quantity={basketTotal} currency="VND" pattern="##,### !" />
             </Text>
           </View>
 
           <View className="flex-row justify-between">
-            <Text className="text-gray-400">Delivery fee</Text>
+            <Text className="text-gray-400">Phí giao hàng</Text>
             <Text className="text-gray-400">
-              <Currency quantity={1.23} />
+              <Currency quantity={20000} currency="VND" pattern="##,### !" />
             </Text>
           </View>
 
           <View className="flex-row justify-between">
-            <Text>Order Total</Text>
+            <Text>Tổng tiền</Text>
             <Text className="font-extrabold">
-              <Currency quantity={basketTotal + 1.23} />
+              <Currency
+                quantity={basketTotal + 20000}
+                currency="VND"
+                pattern="##,### !"
+              />
             </Text>
           </View>
 
           <TouchableOpacity
             onPress={() => navigation.navigate("PreparingOrderScreen")}
-            className="rounded-lg bg-[#00CCBB] p-4"
+            className="p-4 rounded-lg bg-primary"
           >
-            <Text className="text-lg font-bold text-center text-white">Place Order</Text>
+            <Text className="text-lg font-bold text-center text-white">Đặt hàng</Text>
           </TouchableOpacity>
         </View>
       </View>

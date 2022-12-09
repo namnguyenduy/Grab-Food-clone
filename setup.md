@@ -60,6 +60,7 @@ yarn add react-native-animatable
     |   |-- MenuCard.js
     |   |-- Categories.js
     |   |-- Featured.js
+    |   |-- BasketIcon.js
     |-- global
     |   |-- styles.js
     |-- navigation
@@ -193,6 +194,13 @@ yarn add react-native-tab-view
 
 ```
 yarn add react-native-format-currency
+```
+
+- or: (recommended)
+- [https://www.npmjs.com/package/react-currency-formatter]
+
+```
+yarn add react-currency-formatter
 ```
 
 ## 10: Setup `Firebase`
