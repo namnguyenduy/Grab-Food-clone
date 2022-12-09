@@ -4,6 +4,12 @@ export default {
   type: "document",
   fields: [
     {
+      name: "id",
+      type: "number",
+      title: "id",
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "name",
       type: "string",
       title: "Restaurant name",
@@ -79,7 +85,7 @@ export default {
     {
       name: "categories",
       type: "array",
-      title: "Categories",
+      title: "Enter menu of restaurant",
       validation: (Rule) => Rule.required(),
       of: [{ type: "reference", to: [{ type: "category" }] }],
     },

@@ -4,6 +4,12 @@ export default {
   type: "document",
   fields: [
     {
+      name: "id",
+      type: "number",
+      title: "id",
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "name",
       type: "string",
       title: "Featured Category name",
