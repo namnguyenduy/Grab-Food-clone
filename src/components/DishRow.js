@@ -13,14 +13,23 @@ import {
   removeFromBasket,
 } from "../features/basketSlice";
 
-const DishRow = ({ dish }) => {
+const DishRow = ({ dish, idRestaurant }) => {
   const [isPressed, setIsPressed] = useState(false);
   const { id, name, price, image, short_description } = dish;
   const items = useSelector((state) => selectBasketItemsWithId(state, id));
   const dispatch = useDispatch();
 
   const addItemToBasket = () => {
-    dispatch(addToBasket({ id, name, short_description, price, image }));
+    dispatch(
+      addToBasket({
+        id,
+        name,
+        short_description,
+        price,
+        image,
+        idRestaurant: idRestaurant,
+      })
+    );
   };
 
   const removeItemFromBasket = () => {

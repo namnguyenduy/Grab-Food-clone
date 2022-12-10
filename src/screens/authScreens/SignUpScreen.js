@@ -11,14 +11,16 @@ import {
 import { Formik } from "formik";
 import { Icon, Button } from "@rneui/themed";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 
-import { auth } from "../../../firebase";
+import { auth, db } from "../../../firebase";
 import Header from "../../components/Header";
 import { colors, parameters } from "../../global/styles";
 
 const initialValues = {
-  phone_number: "",
-  name: "",
+  phone: "",
+  displayname: "",
+  address: "",
   email: "",
   password: "",
 };
@@ -26,10 +28,18 @@ const SignUpScreen = ({ navigation }) => {
   const [visiblePassword, setVisiblePassword] = useState(true);
 
   const signUp = async (values) => {
-    const { email, password } = values;
+    const { email, password, phone, displayname, address } = values;
     try {
+      const customersCollectionRef = collection(db, "customers");
       await createUserWithEmailAndPassword(auth, email, password);
-      console.log("User created successfully");
+      addDoc(customersCollectionRef, {
+        email,
+        password,
+        phone,
+        displayname,
+        address,
+      });
+      Alert.alert("Tạo tài khoản thành công");
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         Alert.alert("Email đã được sử dụng");
@@ -66,8 +76,8 @@ const SignUpScreen = ({ navigation }) => {
                     className="flex-1 ml-[10px]"
                     placeholder="Số điện thoại"
                     keyboardType="number-pad"
-                    onChangeText={props.handleChange("phone_number")}
-                    value={props.values.phone_number}
+                    onChangeText={props.handleChange("phone")}
+                    value={props.values.phone}
                   />
                 </View>
                 <View style={styles.textInput}>
@@ -81,8 +91,23 @@ const SignUpScreen = ({ navigation }) => {
                   <TextInput
                     className="flex-1 ml-[10px]"
                     placeholder="tên hiển thị"
-                    onChangeText={props.handleChange("name")}
-                    value={props.values.name}
+                    onChangeText={props.handleChange("displayname")}
+                    value={props.values.displayname}
+                  />
+                </View>
+                <View style={styles.textInput}>
+                  <View>
+                    <Icon
+                      type="material-community"
+                      name="map-marker"
+                      iconStyle={{ color: colors.grey3 }}
+                    />
+                  </View>
+                  <TextInput
+                    className="flex-1 ml-[10px]"
+                    placeholder="Địa chỉ"
+                    onChangeText={props.handleChange("address")}
+                    value={props.values.address}
                   />
                 </View>
                 <View style={styles.textInput}>

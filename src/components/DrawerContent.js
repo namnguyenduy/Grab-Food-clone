@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { View, Text, Alert, Switch, StyleSheet } from "react-native";
 import {
   DrawerContentScrollView,
@@ -7,13 +7,29 @@ import {
 } from "@react-navigation/drawer";
 import { Avatar, Button, Icon } from "@rneui/themed";
 import { signOut } from "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
 
 import { colors } from "../global/styles";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 import { SignInContext } from "../contexts/authContext";
 
 const DrawerContent = (props) => {
-  const { dispatchSignedIn } = useContext(SignInContext);
+  const [user, setUser] = useState({});
+  const customersCollectionRef = collection(db, "customers");
+  const { signIn, dispatchSignedIn } = useContext(SignInContext);
+
+  const getCustomersByEmail = (customers) => {
+    const customer = customers.find((customer) => customer.email === signIn?.user?.email);
+    setUser(customer);
+  };
+  useEffect(() => {
+    const getCustomers = async () => {
+      const customersCollection = await getDocs(customersCollectionRef);
+      const customers = customersCollection.docs.map((doc) => doc.data());
+      getCustomersByEmail(customers);
+    };
+    getCustomers();
+  }, []);
   const logout = async () => {
     try {
       await signOut(auth).then(() => {
@@ -45,7 +61,7 @@ const DrawerContent = (props) => {
                 Nguyễn Duy Nam
               </Text>
               <Text className="text-sm" style={{ color: colors.cardBackground }}>
-                abc@gmail.com
+                {signIn?.user?.email}
               </Text>
             </View>
           </View>

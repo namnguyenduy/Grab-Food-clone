@@ -5,7 +5,7 @@ import menuData from "../../assets/data/menuData.json";
 import menuDetailedData from "../../assets/data/menuDetailedData.json";
 import { DishRow } from "../../components";
 
-const Route1 = ({ navigation, dishesData }) => {
+const Route1 = ({ navigation, dishesData, idRestaurant }) => {
   return (
     <View className="flex-1">
       <View className="mt-[5px] pb-5">
@@ -14,7 +14,7 @@ const Route1 = ({ navigation, dishesData }) => {
             className="bg-white"
             data={dishesData}
             keyExtractor={(item) => item.id}
-            renderItem={({ item }) => <DishRow dish={item} />}
+            renderItem={({ item }) => <DishRow dish={item} idRestaurant={idRestaurant} />}
             initialNumToRender={2}
             showsVerticalScrollIndicator={false}
           />

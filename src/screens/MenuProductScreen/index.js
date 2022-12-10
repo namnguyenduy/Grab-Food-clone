@@ -67,7 +67,7 @@ const MenuProductScreen = ({ navigation, route }) => {
   const renderScene = ({ route }) => {
     for (let i in routes) {
       if (route.key == routes[i].key) {
-        return <Route1 dishesData={dishesData} />;
+        return <Route1 dishesData={dishesData} idRestaurant={idRestaurant} />;
       }
     }
   };

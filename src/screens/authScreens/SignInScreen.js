@@ -35,7 +35,15 @@ const SignInScreen = ({ navigation }) => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       if (user) {
-        dispatchSignedIn({ type: "SIGN_IN", payload: { userToken: "signed-in" } });
+        dispatchSignedIn({
+          type: "SIGN_IN",
+          payload: {
+            userToken: "signed-in",
+            user: {
+              email: user.user.email,
+            },
+          },
+        });
         setLoading(false);
       }
     } catch (error) {

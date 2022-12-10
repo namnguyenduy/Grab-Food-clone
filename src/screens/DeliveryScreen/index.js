@@ -56,9 +56,7 @@ const DeliveryScreen = () => {
           </View>
           <Progress.Bar size={30} color="#00CCBB" indeterminate={true} />
 
-          <Text className="mt-3 text-gray-500">
-            Món ăn của bạn ở {restaurant.name} đã được chuẩn bị
-          </Text>
+          <Text className="mt-3 text-gray-500">Món ăn của bạn đang chuẩn bị giao</Text>
         </View>
       </SafeAreaView>
 

@@ -20,6 +20,7 @@ const BasketScreen = () => {
   const restaurant = useSelector(selectRestaurant);
   const items = useSelector(selectBasketItems);
   const basketTotal = useSelector(selectBasketTotal);
+  const feeDelivery = 20000;
 
   const [groupedItemsInBasket, setGroupedItemsInBasket] = useState([]);
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const BasketScreen = () => {
 
     setGroupedItemsInBasket(groupedItems);
   }, [items]);
+  console.log("data: ", JSON.stringify(groupedItemsInBasket, null, 2));
 
   return (
     <SafeAreaView className="flex-1 bg-primary">
@@ -49,14 +51,14 @@ const BasketScreen = () => {
             <Icon name="close-thick" type="material-community" size={30} color="#fff" />
           </TouchableOpacity>
         </View>
-        <View className="bg-white">
+        {/* <View className="bg-white">
           <Text
             className="py-5 px-[10px] text-lg font-bold text-center"
             numberOfLines={2}
           >
             {restaurant.name}
           </Text>
-        </View>
+        </View> */}
 
         <View className="flex-row items-center px-4 py-3 my-5 space-x-4 bg-white">
           <Image
@@ -110,7 +112,7 @@ const BasketScreen = () => {
           <View className="flex-row justify-between">
             <Text className="text-gray-400">Phí giao hàng</Text>
             <Text className="text-gray-400">
-              <Currency quantity={20000} currency="VND" pattern="##,### !" />
+              <Currency quantity={feeDelivery} currency="VND" pattern="##,### !" />
             </Text>
           </View>
 
@@ -118,7 +120,7 @@ const BasketScreen = () => {
             <Text>Tổng tiền</Text>
             <Text className="font-extrabold">
               <Currency
-                quantity={basketTotal + 20000}
+                quantity={basketTotal + feeDelivery}
                 currency="VND"
                 pattern="##,### !"
               />

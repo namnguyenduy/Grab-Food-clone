@@ -179,7 +179,7 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
         )}
       </ScrollView>
 
-      <TouchableOpacity>
+      {/* <TouchableOpacity>
         <View
           className="h-[50px] justify-center px-[5px]"
           style={{ backgroundColor: colors.primary }}
@@ -204,7 +204,7 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
             </View>
           </View>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </SafeAreaView>
   );
 };

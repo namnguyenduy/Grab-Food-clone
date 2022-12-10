@@ -2,11 +2,14 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Icon, withBadge } from "@rneui/themed";
+import { useSelector } from "react-redux";
 
 import { colors, parameters } from "../global/styles";
+import { selectBasketItems } from "../features/basketSlice";
 
 const HomeHeader = ({ navigation }) => {
-  const BadgeIcon = withBadge(0)(Icon);
+  const items = useSelector(selectBasketItems);
+  const BadgeIcon = withBadge(items.length)(Icon);
 
   return (
     <SafeAreaView
