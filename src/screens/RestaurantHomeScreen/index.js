@@ -54,6 +54,8 @@ const RestaurantHomeScreen = ({ navigation, route }) => {
         rating: data.rating,
         genre: data.categories,
         short_description: data.short_description,
+        lat: data.lat,
+        long: data.long,
         collectTime: data.collectTime,
         deliveryTime: data.deliveryTime,
         farAway: data.farAway,

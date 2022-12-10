@@ -36,28 +36,34 @@ const BasketScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-primary">
       <View className="flex-1 bg-gray-100">
-        <View className="p-5 border-b border-[#00CCBB] bg-primary shadow-xs">
+        <View className="p-5 border-b border-[#00CCBB] bg-primary shadow-xs relative">
           <View>
             <View>
               <Text className="text-xl font-bold text-center text-white">Giỏ hàng</Text>
-              <Text className="text-center text-gray-400">{restaurant.name}</Text>
             </View>
-
-            <TouchableOpacity
-              onPress={navigation.goBack}
-              className="absolute bg-gray-100 rounded-full top-3 right-5"
-            >
-              <Icon name="closecircleo" type="antdesign" size={30} />
-            </TouchableOpacity>
           </View>
+          <TouchableOpacity
+            onPress={navigation.goBack}
+            className="absolute top-3 right-5"
+          >
+            <Icon name="close-thick" type="material-community" size={30} color="#fff" />
+          </TouchableOpacity>
+        </View>
+        <View className="bg-white">
+          <Text
+            className="py-5 px-[10px] text-lg font-bold text-center"
+            numberOfLines={2}
+          >
+            {restaurant.name}
+          </Text>
         </View>
 
         <View className="flex-row items-center px-4 py-3 my-5 space-x-4 bg-white">
           <Image
-            // source={require("../assets/images/logo/logo.jpg")}
+            source={require("../../../assets/images/driver.png")}
             className="p-4 bg-gray-300 rounded-full h-7 w-7"
           />
-          <Text className="flex-1">Giao trong 10-15 phút</Text>
+          <Text className="flex-1">Giao trong {restaurant.deliveryTime} phút</Text>
           <TouchableOpacity>
             <Text className="text-[#00CCBB]">Thay đổi</Text>
           </TouchableOpacity>
@@ -86,7 +92,7 @@ const BasketScreen = () => {
                   className="text-[#00CCBB] text-xs"
                   onPress={() => dispatch(removeFromBasket({ id: key }))}
                 >
-                  Remove
+                  Xóa
                 </Text>
               </TouchableOpacity>
             </View>

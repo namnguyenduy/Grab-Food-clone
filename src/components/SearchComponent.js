@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -12,31 +12,57 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Icon } from "@rneui/themed";
+
 import { colors } from "../global/styles";
-import * as Animatable from "react-native-animatable";
-
 import filterData from "../assets/data/filterData.json";
+import sanityClient from "../../sanity";
+import { interpolateNode } from "react-native-reanimated";
 
-export default function SearchComponent() {
-  const [listSearchData, setListSearchData] = useState(filterData);
+const SearchComponent = () => {
+  const [listSearchData, setListSearchData] = useState([]);
+  const [text, setText] = useState("");
+  const [categories, setCategories] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [textInputFocus, setTextInputFocus] = useState(true);
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+     *[_type == "category" ] | order(id asc)
+    `
+      )
+      .then((data) => {
+        setCategories(data);
+      });
+  }, []);
+  useEffect(() => {
+    setListSearchData(categories);
+  }, []);
 
   const navigation = useNavigation();
   const textInput = useRef(0);
 
-  const contains = ({ name }, query) => (name.includes(query) ? true : false);
+  const contains = ({ name }, query) => {
+    return name.toLowerCase().includes(query.toLowerCase());
+  };
 
   const handleSearch = (text) => {
-    const dataSearch = filterData.filter((item) => contains(item, text));
-    setListSearchData(dataSearch);
+    if (text.length > 0) {
+      const dataSearch = listSearchData.filter((item) => contains(item, text));
+      setListSearchData(dataSearch);
+    } else {
+      setListSearchData(categories);
+    }
   };
   const searchListRender = ({ item }) => {
     return (
       <TouchableOpacity
         onPress={() => {
           Keyboard.dismiss;
-          navigation.navigate("SearchResultScreen", { item: item.name });
+          navigation.navigate("SearchResultScreen", {
+            idCategory: item.id,
+            nameCategory: item.name,
+          });
           setModalVisible(false);
           setTextInputFocus(true);
         }}
@@ -89,7 +115,11 @@ export default function SearchComponent() {
                 ref={textInput}
                 onFocus={() => setTextInputFocus(true)}
                 onBlur={() => setTextInputFocus(false)}
-                onChangeText={handleSearch}
+                onChangeText={(newText) => {
+                  handleSearch(newText);
+                  setText(newText);
+                }}
+                defaultValue={text}
               />
               <View>
                 <Icon
@@ -99,7 +129,7 @@ export default function SearchComponent() {
                   iconStyle={{ color: colors.grey3 }}
                   onPress={() => {
                     textInput.current.clear();
-                    // handleSearch();
+                    setListSearchData(categories);
                   }}
                 />
               </View>
@@ -115,6 +145,6 @@ export default function SearchComponent() {
       </Modal>
     </View>
   );
-}
-
+};
+export default SearchComponent;
 const styles = StyleSheet.create({});

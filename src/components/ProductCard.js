@@ -3,9 +3,10 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import Currency from "react-currency-formatter";
 
 import { colors } from "../global/styles";
+import { urlFor } from "../../sanity";
 
-const ProductCard = ({ productsData }) => {
-  const { name, price, image } = productsData;
+const ProductCard = ({ dishes }) => {
+  const { name, price, image } = dishes;
 
   return (
     <View className="bg-white shadow-md w-[210px] p-[10px] m-[5px]">
@@ -20,7 +21,10 @@ const ProductCard = ({ productsData }) => {
         </View>
 
         <View className="w-[75px] h-[65px] ">
-          <Image className="w-full h-full" source={{ uri: image }} />
+          <Image
+            className="w-full h-full"
+            source={{ uri: urlFor(image?.asset?._ref).url() }}
+          />
         </View>
       </View>
     </View>

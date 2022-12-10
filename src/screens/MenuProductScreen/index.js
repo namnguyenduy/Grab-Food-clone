@@ -20,7 +20,10 @@ const MenuProductScreen = ({ navigation, route }) => {
 
   const filterDishesByCategory = (dishes, idCategory) => {
     const newDishes = dishes.filter((dish) => {
-      return dish.categories.some((category) => category.id == idCategory);
+      return dish.categories.some(
+        (category) =>
+          routes[idCategory]?.title && category?.name == routes[idCategory]?.title
+      );
     });
     setDishesData(newDishes);
   };

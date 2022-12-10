@@ -8,24 +8,44 @@ import {
   StyleSheet,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { SearchComponent } from "../../components";
 import filterData from "../../assets/data/filterData.json";
 import filterAll from "../../assets/data/filterAll.json";
 import { colors } from "../../global/styles";
+import sanityClient from "../../../sanity";
+import { urlFor } from "../../../sanity";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SearchScreen = ({ navigation }) => {
+  const [categoriesData, setCategoriesData] = useState([]);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+     *[_type == "category" ] | order(id asc)
+    `
+      )
+      .then((data) => {
+        setCategoriesData(data);
+      });
+  }, []);
   const listFilterRender = ({ item }) => {
     return (
       <TouchableWithoutFeedback
-        onPress={() => navigation.navigate("SearchResultScreen", { item: item.name })}
+        onPress={() =>
+          navigation.navigate("SearchResultScreen", {
+            idCategory: item.id,
+            nameCategory: item.name,
+          })
+        }
       >
         <View style={styles.imageView} className="items-center justify-center rounded-md">
           <ImageBackground
             className="w-full h-full bg-green-400 border rounded-md"
-            source={{ uri: item.image }}
+            source={{ uri: urlFor(item?.image?.asset?._ref).url() }}
           >
             <View
               className="items-center justify-center w-full h-full"
@@ -39,7 +59,7 @@ const SearchScreen = ({ navigation }) => {
                   textShadowRadius: 30,
                 }}
               >
-                {item.name}
+                {item?.name}
               </Text>
             </View>
           </ImageBackground>
@@ -53,7 +73,7 @@ const SearchScreen = ({ navigation }) => {
       <View className="my-5">
         <FlatList
           initialNumToRender={2}
-          data={filterAll}
+          data={categoriesData}
           keyExtractor={(item) => item.id}
           renderItem={listFilterRender}
           horizontal={false}
@@ -67,12 +87,12 @@ const SearchScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView className="flex-1">
-      <SearchComponent />
+      <SearchComponent categories={categoriesData} />
       <View className="my-5">
         <FlatList
           contentContainerStyle={{ paddingBottom: 20 }}
           initialNumToRender={2}
-          data={filterData}
+          data={categoriesData}
           keyExtractor={(item) => item.id}
           renderItem={listFilterRender}
           horizontal={false}

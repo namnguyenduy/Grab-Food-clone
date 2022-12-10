@@ -21,7 +21,7 @@ const Featured = ({ id, title, restaurants, navigation }) => {
         <Text style={styles.headerText}>{title}</Text>
       </View>
 
-      {id !== 3 ? (
+      {id !== 2 ? (
         <View>
           {id === 0 && (
             <View className="flex-row items-center">
@@ -49,7 +49,7 @@ const Featured = ({ id, title, restaurants, navigation }) => {
             keyExtractor={(item) => item?.id}
             renderItem={({ item }) => {
               return (
-                <View className="mr-[5px]">
+                <View className="mr-[5px]" key={item?.id}>
                   <FoodCard
                     onPressFoodCard={() =>
                       navigation.navigate("RestaurantHomeScreen", {
